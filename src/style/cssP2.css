@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.kitchenIMG {
+
+    display: flex;
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 7px;
+
+    
+}
+
+.lay_out {
+    width: 393px;
+    height: 852px;
+    margin: auto;
+
+}
+
+.Rectangle_gray_p2 {
+    display: flex;
+    width: 393px;
+    height: 66px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Bell_p2 {
+    margin-left: 9px;
+    width: 35px;
+    height: 35px;
+   
+
+}
+
+.Steven_square_p1 {
+    display: flex;
+    height: 66px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Hader_text_p1{
+    font-size: 13px;
+    margin-right: 5px;
+
+
+}
+
+.Steven_pic_p1 {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    background-image: url('../my_Images/steven_pic.png');
+    border-radius: 30px;
+
+}
+
+.TextP2 {
+
+        font-size: 22px;
+        display: flex;
+    margin-left: 10px;
+}
+
+.square_ingredients_p2 {
+
+    height: 177px;
+    width: 393px;
+    display: flex;
+    overflow-y: auto;
+    align-content: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+
+
+
+
+
+.Intolerances_p2 p {
+    font-size: 15px;
+    margin-left: 10px;
+
+}
+
+.Ingredients_p2 p { 
+
+    font-size: 15px;
+    margin-left: 10px;
+
+}
+
+.recPList {
+    overflow: auto;
+    height: 486px;
+    width: 393px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
+}
+
+.leftContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 146px;
+    width: 250px;
+
+}
+
+.rightContainer {
+    overflow: hidden;
+    height: 146px;
+    width: 143px;
+
+    
+
+
+}
+
+.subTitle {
+  font-size: 12px;
+  height: 30px;
+  width: 100%;;
+
+}
+
+.recPic {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 122px;
+    width: 100px;
+
+}
+
+.recPic img { 
+
+    height: 143px;
+    width: 143px;
+}
+
+.start_button {
+
+    height: 25px;
+    width: 55px;
+
+}
+
+.Footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;  
+    background-color: rgba(0, 59, 84, 0.1);
+}
+
+.text_container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    height: 110px;
+    width: 100%;
+}

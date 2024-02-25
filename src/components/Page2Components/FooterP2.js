@@ -6,7 +6,7 @@ import '../../style/cssP2.css';
 export default function FooterP2() {
 
   return (
-    <div className="Footer">
+    <div className="FooterP2">
       <Link to="/components/Home">
         <div className="icon" >
           <Home fontSize="small" color="primary" />

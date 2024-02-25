@@ -19,13 +19,7 @@ import bellImage from "./../my_Images/bell.png";
 
 
 function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}  
-       KitchenGenius {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+
 }
 
 // TODO remove, this demo shouldn't need to reset the theme.

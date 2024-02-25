@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import ToggleButton from '../ToggleButton';
 import Papa from 'papaparse';
 import csv_files from "../../csv_files/top-1k-ingredients.csv"
+import '../../style/cssP1.css';
 
 
 var newIdCounter = 0;
@@ -97,7 +98,7 @@ export default function MainP1() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (ingredient.length === 0) {
-      console.log("Error: It's an empty input");
+      alert("Error: It's an empty input");
       return;
     }
 
@@ -165,6 +166,7 @@ export default function MainP1() {
   return (
     <div className="Main">
       <h1 className="Main_upper_text">What Would You Like To Cook?</h1>
+      <p className='line1_P1'></p>
       <h5 className="ingredients">ingredients: </h5>
       <div className="ingredients_box">
         <form className="ingredients_box_form" onSubmit={handleSubmit}>
@@ -188,15 +190,18 @@ export default function MainP1() {
           {renderIngredients()}
         </form>
       </div>
+      <p className='line1_P1'></p>
       <div className="Meal_select">
-        <p>what meal?</p>
+        <p>Meal Type</p>
         <div className="buttons">
           <ToggleButtons ingredientList={ingredientList} setIngredientList={setIngredientList} />
         </div>
       </div>
+      <p className='line1Fixed_P1'></p>
       <div className="Skill_bar">
-        <p>skill level</p>
+        <p>Avaliable Cooking Time</p>
         <DiscreteSlider ingredientList={ingredientList} setIngredientList={setIngredientList} />
+        <p></p>
       </div>
       <div className="Any_special">
         <p>Any special requests?</p>

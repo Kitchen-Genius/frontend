@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import my_Images from '../../my_Images/kitchengenius.png';
-import axios from 'axios';
+// import axios from 'axios';
 import '../../style/cssP2.css';
 import AlertDialog from './AlertDialog';
 import AlertDialog2 from './AlertDialog2';

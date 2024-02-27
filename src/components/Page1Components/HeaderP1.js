@@ -1,7 +1,7 @@
-import { useEffect,useState } from 'react';
+// import { useEffect,useState } from 'react';
 import my_Images from '../../my_Images/kitchengenius.png'
 import '../../style/cssP1.css'
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function HeaderP1 () {
     

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import AppleIcon from '@mui/icons-material/Apple';
-import LocalPizzaIcon from '@mui/icons-material/LocalPizza'; // Replace BreadSlice
-import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage'; // Replace Eco
+// import AppleIcon from '@mui/icons-material/Apple';
+// import LocalPizzaIcon from '@mui/icons-material/LocalPizza'; // Replace BreadSlice
+// import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage'; // Replace Eco
 import CoffeeTwoToneIcon from '@mui/icons-material/CoffeeTwoTone';
 import CoffeeMakerIcon from '@mui/icons-material/CoffeeMaker';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';

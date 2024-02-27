@@ -1,13 +1,13 @@
-import { Form, Navigate } from 'react-router-dom';
+// import { Form, Navigate } from 'react-router-dom';
 import '../style/cssP1.css';
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import ToggleButtons from './Page1Components/ToggleButtons';
-import SkillLevelSlider from './SkillLevelSlider';
+// import SkillLevelSlider from './SkillLevelSlider';
 import DiscreteSlider from './DiscreteSlider';
 import ToggleButtons2 from './ToggleButtons2';
-import { useNavigate } from 'react-router-dom';
-import ToggleButton from './ToggleButton'
+// import { useNavigate } from 'react-router-dom';
+// import ToggleButton from './ToggleButton'
 import ComboBox from './ComboBox';
 var newIdCounter = 0;
 

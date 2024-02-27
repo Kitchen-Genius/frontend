@@ -131,7 +131,7 @@ export default function MainP1() {
     if (window.location.hostname === "localhost") {
         apiBaseUrl = "http://localhost:8000";
     } else {
-        apiBaseUrl = "https://kitchen-genius-e4758708fa62.herokuapp.com";
+        apiBaseUrl = "https://frontend-41ag.onrender.com";
     }
 
     const serverEndpoint = `${apiBaseUrl}/api/saveIngredients`;

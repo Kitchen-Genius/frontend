@@ -71,7 +71,7 @@
 }
 
 .square_ingredients_p2 {
-
+    margin-top: 10px;
     height: 177px;
     width: 393px;
     display: flex;
@@ -93,7 +93,7 @@
 }
 
 .Ingredients_p2 p { 
-
+    
     font-size: 15px;
     margin-left: 10px;
 
@@ -101,7 +101,7 @@
 
 .recPList {
     overflow: auto;
-    height: 486px;
+    height: 475px;
     width: 393px;
     display: flex;
     flex-direction: row;
@@ -150,17 +150,17 @@
 }
 
 .start_button {
-
+    margin-top: 30px;
     height: 25px;
     width: 55px;
 
 }
 
-.Footer {
+.FooterP2 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 60px;  
+    height: 40px; 
     background-color: rgba(0, 59, 84, 0.1);
 }
 
@@ -168,7 +168,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-
+    align-content: center;
     height: 110px;
     width: 100%;
 }

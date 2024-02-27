@@ -14,6 +14,7 @@
 }
 
 .lay_out {
+    overflow: hidden;
     width: 393px;
     height: 852px;
     margin: auto;
@@ -24,9 +25,8 @@
     display: flex;
     width: 393px;
     height: 66px;
-    background-color: rgba(0, 59, 84, 0.1);
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .Bell {
@@ -55,6 +55,21 @@
 
 }
 
+.line1_P1 {
+    height: 0.1px;
+    width: 393px;
+    background-color: #757575d9;
+
+}
+
+.line1Fixed_P1 {
+    margin-top: 6px;
+    height: 0.1px;
+    width: 393px;
+    background-color: #757575d9;
+
+}
+
 .Steven_pic_p1 {
     margin-right: 20px;
     width: 50px;
@@ -73,6 +88,7 @@
 
 }
 .Main_upper_text {
+    margin-left: 30px;
     margin-top: 26px;
     width: 325px;
     height: 29px;
@@ -82,11 +98,13 @@
     display: flex;
     width: 393px;
     height: 177px;
+    margin-top: 10px;
+    margin-left: 30px;
 
 }
 .ingredients {
-
-    margin-left: 46px;
+    margin-top: 5px;
+    margin-left: 76.5px;
 }
 .ingredients_box_form {
     
@@ -126,9 +144,9 @@
     margin-top: 50px;
 }
 .Skill_bar {
-    padding-left: 35px;
-    height: 96px;
+    padding-left: 15px;
     width: 393px;
+    margin-top: 15px;
 
 }
 .Skill_bar p {
@@ -193,11 +211,11 @@
 
 }
 
-.Footer {
+.FooterP1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 60px;  
+    height: 40px;  
     background-color: rgba(0, 59, 84, 0.1);
 }
 

@@ -4,31 +4,54 @@ import Slider from '@mui/material/Slider';
 
 const DiscreteSlider = (props) => {
   const valueLabelFormat = (value) => {
-    if (value <= 30) {
-      return 'Beginner';
-    } else if (value <= 60) {
-      return 'Intermediate';
-    } else if (value <= 90) {
-      return 'Expert';
+    if (value <= 5) {
+        return '5 Min';
+
+    } else if (value <= 10) {
+        return '15 Min';
+
+    } else if (value <= 15) {
+        return '25 Min';
     }
+      else if (value <= 20) {
+        return '30 Min';
+    }
+      else if (value <= 25) {
+        return '1H';
+    }
+      else if (value <= 30) {
+        return '2H';
+    }
+      else if (value <= 35) {
+        return '3H';
+    }
+      else if (value <= 40) {
+        return '4H';
+    }
+      else if (value <= 45) {
+        return '5H';
+    }
+      else if (value <= 50) {
+       return '6H';
+  }
   };
 
   const handleChange = (event, value) => {
-    let levelOfCooking = [];
+    let CookingTime = [];
 
     if (value <= 30) {
-      levelOfCooking = "Beginner";
+      CookingTime = "Beginner";
     } else if (value <= 60) {
-      levelOfCooking = "Intermediate";
+      CookingTime = "Intermediate";
     } else if (value <= 90) {
-      levelOfCooking = "Expert";
+      CookingTime = "Expert";
     }
 
     // Update the ingredient list using setIngredientList
     props.setIngredientList((prevList) => {
       const updatedList = {
         ...prevList,
-        levelOfCooking
+        CookingTime
       };
 
       
@@ -47,10 +70,10 @@ const DiscreteSlider = (props) => {
         defaultValue={30}
         valueLabelFormat={valueLabelFormat}
         valueLabelDisplay="auto"
-        step={30}
+        step={5}
         marks
-        min={30}
-        max={90}
+        min={5}
+        max={50}
         onChange={handleChange}
       />
     </Box>

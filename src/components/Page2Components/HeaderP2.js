@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import my_Images from '../../my_Images/kitchengenius.png';
 import axios from 'axios';
 import '../../style/cssP2.css';
+import AlertDialog from './AlertDialog';
+import AlertDialog2 from './AlertDialog2';
 
 
 export default function HeaderP2(props) {
     const [Intolerances, SetIntolerances] = useState([]);
     const [Ingredients, SetIngredients] = useState([]);
-    const [Level, SetLevel] = useState([]);
+    const [Time, SetTime] = useState([]);
   
     useEffect(() => {
       const receiveIntoFunc = () => {
@@ -35,20 +37,21 @@ export default function HeaderP2(props) {
         }
       };
     
-      const level =
-        props.ingredientList && props.ingredientList.hasOwnProperty('levelOfCooking')
-          ? props.ingredientList.levelOfCooking
+      const Time =
+        props.ingredientList && props.ingredientList.hasOwnProperty('CookingTime')
+          ? props.ingredientList.CookingTime
           : null;
     
-      if (level !== null) {
-        SetLevel(level);
+      if (Time !== null) {
+        SetTime(Time);
       }
     
       receiveIntoFunc();
     }, [props.ingredientList]);
   
     const buttonStyle = {
-      width: '100px',
+      width: '90px',
+      height: '20px',
       margin: '2px 5px',
       padding: '6px 10px',
       borderRadius: '8px',
@@ -61,6 +64,23 @@ export default function HeaderP2(props) {
       alignItems: 'center',
       backgroundColor: 'rgba(240, 240, 240, 1)', // Adjust the background color as needed
       color: '#000', // Adjust the text color as needed
+    };
+
+    const buttonLevelStyle = {
+      margin: '2px 5px',
+      padding: '6px 10px',
+      borderRadius: '8px',
+      cursor: 'pointer',
+      transition: 'background-color 0.3s',
+      border: 'none',
+      fontFamily: 'Arial, sans-serif',
+      fontWeight: 'bold',
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: 'rgba(240, 240, 240, 1)', // Adjust the background color as needed
+      color: '#000', // Adjust the text color as needed
+
+
     };
   
     return (
@@ -80,25 +100,33 @@ export default function HeaderP2(props) {
         </div>
         <div className="square_ingredients_p2">
           <div className="Intolerances_p2">
-            <h3>Intolerances</h3>
-            {Intolerances.map((intolerance, index) => (
+            <h3>Intolerances: </h3>
+            {Intolerances.slice(0, 2).map((intolerance, index) => (
               <p key={index} style={buttonStyle}>
                 {intolerance}
               </p>
             ))}
+
+        {Intolerances.length > 2 && (
+      <button className='tree_dots'> <AlertDialog2 Intolerances={Intolerances}/></button>
+    )}
           </div>
           <div className="Ingredients_p2">
-          <h3>Ingredients</h3>
-          {Ingredients.map((ingredient, index) => (
-              <p key={index} style={buttonStyle}>
-                {ingredient}
-              </p>
-            ))}
+          <h3>Ingredients: </h3>
+          {Ingredients.slice(0, 2).map((ingredient, index) => (
+           <p key={index} style={buttonStyle}>
+              {ingredient}
+             </p>
+           ))}
+    
+    {Ingredients.length > 2 && (
+      <button className='tree_dots'> <AlertDialog ingredients={Ingredients}/></button>
+    )}
            </div>
-          <div className="Level"> 
-          <h3>Level</h3>
-              <p style={buttonStyle}>
-                {Level}
+          <div className="Level_p2"> 
+          <h3>time: </h3>
+              <p style={buttonLevelStyle}>
+                {Time}
               </p>
              </div>
         </div>

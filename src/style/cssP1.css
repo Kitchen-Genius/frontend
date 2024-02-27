@@ -14,7 +14,7 @@
 }
 
 .lay_out {
-    overflow: hidden;
+    overflow-x: hidden;
     width: 393px;
     height: 852px;
     margin: auto;
@@ -145,6 +145,7 @@
 }
 .Skill_bar {
     padding-left: 15px;
+    height: 59px;
     width: 393px;
     margin-top: 15px;
 
@@ -185,7 +186,7 @@
 
 .Any_special p {
 
-    margin-top: 19px;
+    margin-top: 50px;
     margin-left: 22px;
     font-size: 15px;
     height: 30px;
@@ -193,13 +194,43 @@
 
 .Any_special form {
     height: 30px;
-    margin-top: 19px;
+    margin-top: 50px;
     margin-left: 15px;
     font-size: 15px;
 
 }
 .ToggleButtons2 {
     
+
+}
+
+.small_lines_containerP1{
+    display: flex;
+    height: 4px;
+    width: 330px;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin-left: 31px;
+    margin-top: 5px;
+
+}
+
+.small_linesP1 {
+    height: 2px;
+    width: 2px;
+    background-color: #0088ff3b;
+    padding-bottom: 9px;
+    margin-left: 4px;
+
+
+}
+
+.small_linesP1 p{
+    position: absolute;
+    margin-top: 14px;
+    left: 43px;
+    font-size: 11px;
+
 
 }
 .finalSubmit{

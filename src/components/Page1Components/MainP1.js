@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import ToggleButtons from './ToggleButtons';
 import SkillLevelSlider from '../SkillLevelSlider';
-import DiscreteSlider from '../DiscreteSlider';
+import DiscreteSlider from './DiscreteSlider';
 import ToggleButtons2 from '../ToggleButtons2';
 import { useNavigate } from 'react-router-dom';
 import ToggleButton from '../ToggleButton';
@@ -53,7 +53,7 @@ export default function MainP1() {
           {Object.keys(ingredientList)
             .slice(-5)
             .map((ingredientName, index) =>
-              ingredientName !== 'levelOfCooking' &&
+              ingredientName !== 'CookingTime' &&
               ingredientName !== 'dessert' &&
               ingredientName !== 'dinner' &&
               ingredientName !== 'lunch' &&
@@ -201,8 +201,39 @@ export default function MainP1() {
       <div className="Skill_bar">
         <p>Avaliable Cooking Time</p>
         <DiscreteSlider ingredientList={ingredientList} setIngredientList={setIngredientList} />
-        <p></p>
       </div>
+      <div className="small_lines_containerP1">
+        <h5 className='small_linesP1'>
+        <p>5m</p>
+        </h5>
+        <h5 className='small_linesP1'>
+        <p style={{left: '75px'}}>15m</p>
+        </h5>
+        <h5 className='small_linesP1' style={{ marginRight: '1px' }}>
+        <p style={{left: '108px'}}>25m</p>
+        </h5>
+        <h5 className='small_linesP1' style={{ marginRight: '1px' }}>
+        <p style={{left: '140px'}}>30m</p>
+        </h5>
+        <h5 className='small_linesP1' style={{ marginRight: '1px' }}>
+        <p style={{left: '175.5px'}}>1h</p>
+        </h5>
+        <h5 className='small_linesP1' style={{ marginRight: '1px' }}>
+        <p style={{left: '208.5px'}}>2h</p>
+        </h5>
+        <h5 className='small_linesP1' style={{ marginRight: '1.5px' }}>
+        <p style={{left: '241.5px'}}>3h</p>
+        </h5>
+        <h5 className='small_linesP1' style={{ marginRight: '1px' }}>
+        <p style={{left: '275.5px'}}>4h</p>
+        </h5>
+        <h5 className='small_linesP1'>
+        <p style={{left: '309px'}}>5h</p>
+        </h5>
+        <h5 className='small_linesP1'>
+        <p style={{left: '340.5px'}}>6h</p>
+        </h5>
+        </div>
       <div className="Any_special">
         <p>Any special requests?</p>
         <form onSubmit={handleSpecialRequestsSubmit}>

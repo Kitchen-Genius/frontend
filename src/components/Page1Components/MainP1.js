@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import ToggleButtons from './ToggleButtons';
-import SkillLevelSlider from '../SkillLevelSlider';
+// import SkillLevelSlider from '../SkillLevelSlider';
 import DiscreteSlider from '../DiscreteSlider';
 import ToggleButtons2 from '../ToggleButtons2';
 import { useNavigate } from 'react-router-dom';
-import ToggleButton from '../ToggleButton';
+// import ToggleButton from '../ToggleButton';
 import Papa from 'papaparse';
 import csv_files from "../../csv_files/top-1k-ingredients.csv"
 import '../../style/cssP1.css';
 
 
-var newIdCounter = 0;
+// var newIdCounter = 0;
 var csvList = [];
 
 export default function MainP1() {

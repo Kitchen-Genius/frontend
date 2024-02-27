@@ -6,8 +6,8 @@ export default function MainP2(props) {
   const [selector, setSelector] = useState([]);
   const [recipeJson, setRecipeJson] = useState([]);
   const timeOptions = [25, 30, 40, 50];
-  const [alreadyDisplayed, setAlreadyDisplayed] = useState([]);
-  const [ingredientCount, setIngredientCount] = useState(0);
+  // const [alreadyDisplayed, setAlreadyDisplayed] = useState([]);
+  // const [ingredientCount, setIngredientCount] = useState(0);
 
   const getRandomTime = () => {
     const randomIndex = Math.floor(Math.random() * timeOptions.length);

@@ -43,6 +43,33 @@ export default function MainP1() {
     fetchData();
   }, []);
 
+
+  const createJsonFile = () => {
+    const sampleIngredientList = Object.fromEntries(
+      Object.entries(ingredientList).slice(0, 10)
+    );
+
+    // Example: create a Blob from the first 10 ingredients
+    const jsonBlob = new Blob([JSON.stringify(sampleIngredientList)], {
+      type: 'application/json',
+    });
+
+    // Example: save the Blob as a JSON file
+    saveJsonToFile(jsonBlob, 'sample_ingredient_list.json');
+  };
+
+  const saveJsonToFile = (jsonBlob, filename) => {
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style = 'display: none';
+  
+    const url = window.URL.createObjectURL(jsonBlob);
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   const renderIngredients = () => {
     return (
       <div>
@@ -251,6 +278,7 @@ export default function MainP1() {
           Search
         </button>
       </div>
+      <button onClick={createJsonFile}>Create JSON File</button>
     </div>
   );
 }

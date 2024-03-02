@@ -8,6 +8,7 @@ export default function MainP2(props) {
   const [likedRecipes, setLikedRecipes] = useState([]);
   const timeOptions = [25, 30, 40, 50];
   const navigate = useNavigate();
+  
 
   const getRandomTime = () => {
     const randomIndex = Math.floor(Math.random() * timeOptions.length);
@@ -15,7 +16,7 @@ export default function MainP2(props) {
   };
 
   useEffect(() => {
-    setRecipeJson(Json);
+    setRecipeJson(props.myJson);
 
     const putRecipeCard = () => {
       Object.entries(recipeJson).forEach(([key, value]) => {

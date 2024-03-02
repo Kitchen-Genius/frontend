@@ -147,47 +147,46 @@ export default function MainP1() {
   };
 
   
-    const submitSearch = () => {
-      if (Object.keys(ingredientList).length === 0) {
-        alert('Please insert ingredients and choose from the menu');
-        return;
-      }
-    
-      let apiBaseUrl;
-    
-      apiBaseUrl = "https://frontend-41ag.onrender.com";
-    
-      const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
-      setLoading(true);
-    
-      fetch(serverEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(ingredientList),
+  const submitSearch = () => {
+    if (Object.keys(ingredientList).length === 0) {
+      alert('Please insert ingredients and choose from the menu');
+      return;
+    }
+  
+    let apiBaseUrl;
+  
+    apiBaseUrl = "https://frontend-41ag.onrender.com";
+  
+    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
+    setLoading(true);
+  
+    fetch(serverEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(ingredientList),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log('Server response:', response);
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          console.log('Server response:', response);
-          return response.json();
-          
-        })
-        .then((data) => {
-          console.log('Server response:', data);
-          // You can perform additional actions based on the server response here
-        })
-        .catch((error) => {
-          console.error('Error during fetch operation:', error);
-          // Handle error scenarios here
-        })
-        .finally(() => {
-          setLoading(false);
-          navigate("/components/Page2Components/HomeP2", { state: { ingredientList } });
-        });
-    };
+      .then((data) => {
+        console.log('Server response:', data);
+        // Navigate to HomeP2 with both data and ingredientList
+        navigate("/components/Page2Components/HomeP2", { state: { data, ingredientList } });
+      })
+      .catch((error) => {
+        console.error('Error during fetch operation:', error);
+        // Handle error scenarios here
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
     
 
   return (

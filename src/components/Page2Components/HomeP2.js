@@ -7,6 +7,7 @@ import FooterP2 from './FooterP2';
 export default function HomeP2() {
     const location = useLocation();
     const ingredientList = location.state ? location.state.ingredientList : null;
+    const myJson = location.state? location.state.data : null;
     
     
     
@@ -14,7 +15,7 @@ export default function HomeP2() {
     return ( 
         <div className="lay_out">
             <HeaderP2  ingredientList={ingredientList}/>
-            <MainP2  ingredientList={ingredientList}/>
+            <MainP2  ingredientList={ingredientList}  myJson={myJson} />
             <FooterP2 ingredientList={ingredientList}/>
            
         </div>

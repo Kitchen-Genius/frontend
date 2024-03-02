@@ -14,7 +14,7 @@
 }
 
 .lay_out {
-    overflow-x: hidden;
+   
     width: 393px;
     height: 852px;
     margin: auto;
@@ -70,6 +70,39 @@
 
 }
 
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
+    z-index: 1000; /* Make sure the overlay is above other elements */
+  }
+  
+  .loading-spinner-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1001; /* Make sure the spinner is above the overlay */
+  }
+  
+  .loading-spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3); /* Adjust the alpha value for transparency */
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 .Steven_pic_p1 {
     margin-right: 20px;
     width: 50px;

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Json from '../../csv_files/main course_processed_recipes.json';
+import Json from '../../csv_files/None_processed_recipes.json';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function MainP2(props) {
   const [selector, setSelector] = useState([]);
   const [recipeJson, setRecipeJson] = useState([]);
   const timeOptions = [25, 30, 40, 50];
-  // const [alreadyDisplayed, setAlreadyDisplayed] = useState([]);
-  // const [ingredientCount, setIngredientCount] = useState(0);
+  const navigate = useNavigate();
 
   const getRandomTime = () => {
     const randomIndex = Math.floor(Math.random() * timeOptions.length);
@@ -16,7 +16,6 @@ export default function MainP2(props) {
 
   useEffect(() => {
     setRecipeJson(Json);
-    console.log(recipeJson);
 
     const putRecipeCard = () => {
       Object.entries(recipeJson).forEach(([key, value]) => {
@@ -24,13 +23,12 @@ export default function MainP2(props) {
             setSelector((prevSelector) => [
               ...prevSelector,
               <>
-                <div className='leftContainer'>
+                <div key={recipeJson.id} className ='leftContainer'>
                   <h1 className='subTitle'>{value.title}</h1>
                   <div className= 'text_container'>
                     <p className='time'>time: {getRandomTime()}</p>
-                    <p className='difficulty'></p>
-                    
-                    <button className='start_button'>Start</button>
+                    <p className='difficulty'></p>   
+                    <button className='start_button' onClick={() => recipeSelected(value)}>Start</button>
                   </div>
                 </div>
                 <div className='rightContainer'>
@@ -44,6 +42,13 @@ export default function MainP2(props) {
 
     putRecipeCard();
   }, [recipeJson]);
+
+  function recipeSelected(value) {
+    navigate("/components/Page3Components/HomeP3", { state: { value, ingredientList: props.ingredientList } });
+
+
+
+  }
 
   return (
     <div className='recPList'>

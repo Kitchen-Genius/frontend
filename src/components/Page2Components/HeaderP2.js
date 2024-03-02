@@ -81,7 +81,10 @@ export default function HeaderP2(props) {
         </div>
         <div className="Level_p2">
           <h3>time: </h3>
-          <p style={{ ...buttonLevelStyle, margin: '2px 5px' }}>{Time}</p>
+          {Time !== null && (
+            <p style={{ ...buttonLevelStyle, margin: '2px 5px' }}>{Time}</p>
+          )}
+          {console.log('Time:', Time)}
         </div>
       </div>
     </>

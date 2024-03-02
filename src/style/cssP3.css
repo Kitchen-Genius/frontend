@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.lay_out {
+    width: 393px;
+    height: 852px;
+    margin: auto;
+
+}
+
+
+.kitchenIMG {
+
+    display: flex;
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 7px;
+
+    
+}
+
+
+.Rectangle_gray_p3 {
+    display: flex;
+    width: 393px;
+    height: 66px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.Bell_p3 {
+    margin-left: 9px;
+    width: 35px;
+    height: 35px;
+   
+
+}
+
+.Steven_square_p3 {
+    display: flex;
+    height: 66px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Hader_text_p3{
+    font-size: 13px;
+    margin-right: 5px;
+
+
+}
+
+.Steven_pic_p3 {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    background-image: url('../my_Images/steven_pic.png');
+    border-radius: 30px;
+
+}
+
+.RnamePic_p3 {
+
+    width: 393px;
+    height: 61px;
+}
+
+.ArrowBack_p3{
+    position: absolute;
+    left: 10px;
+    top: 143px;
+    width: 22px;
+    height: 22px;
+    background-image: url('../my_Images/arrow.png');
+}
+
+.Rname_p3 {
+    position: absolute;
+    top: 140px;
+    left: 65px;
+    font-weight: bolder;
+    font-size: large;
+
+
+}
+
+.grey_line_p3{
+    margin-top: 20px;
+    width: 393px;
+    height: 1px;
+    background-color: grey;
+
+
+}
+
+.ingredients_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}

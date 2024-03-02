@@ -1,5 +1,10 @@
 [
     {
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "dairyFree": true,
+        "veryHealthy": true,
         "id": 794349,
         "title": "Broccoli and Chickpea Rice Salad",
         "image": "https://spoonacular.com/recipeImages/794349-312x231.jpg",
@@ -321,9 +326,15 @@
                     }
                 }
             }
-        ]
+        ],
+        "Calories": 354.93
     },
     {
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "dairyFree": true,
+        "veryHealthy": true,
         "id": 637297,
         "title": "Cauliflower Chickpea Stew",
         "image": "https://spoonacular.com/recipeImages/637297-312x231.jpg",
@@ -867,9 +878,15 @@
                     }
                 }
             }
-        ]
+        ],
+        "Calories": 455.29
     },
     {
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "dairyFree": true,
+        "veryHealthy": false,
         "id": 1424143,
         "title": "Lemon Rosemary Chickpea Soup",
         "image": "https://spoonacular.com/recipeImages/1424143-312x231.jpg",
@@ -1092,9 +1109,15 @@
                     }
                 }
             }
-        ]
+        ],
+        "Calories": 362.61
     },
     {
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "dairyFree": true,
+        "veryHealthy": false,
         "id": 1096306,
         "title": "Vegan Chana Masala Curry",
         "image": "https://spoonacular.com/recipeImages/1096306-312x231.jpg",
@@ -1556,6 +1579,7 @@
                     }
                 }
             }
-        ]
+        ],
+        "Calories": 478.01
     }
 ]

@@ -16,6 +16,7 @@ export default function MainP1() {
   const [ingredientList, setIngredientList] = useState({});
   const [specialRequests, setSpecialRequests] = useState('');
   const [ingredientOptions, setIngredientOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -145,50 +146,62 @@ export default function MainP1() {
     setIngredient('');
   };
 
-  const submitSearch = () => {
-    if (Object.keys(ingredientList).length === 0) {
-      alert('Please insert ingredients and choose from the menu');
-      return;
-    }
-    let apiBaseUrl;
-
-    if (window.location.hostname === "localhost") {
+  
+    const submitSearch = () => {
+      if (Object.keys(ingredientList).length === 0) {
+        alert('Please insert ingredients and choose from the menu');
+        return;
+      }
+    
+      let apiBaseUrl;
+    
+      if (window.location.hostname === "localhost") {
         apiBaseUrl = "http://localhost:8000";
-    } else {
+      } else {
         apiBaseUrl = "https://frontend-41ag.onrender.com";
-    }
-
-    const serverEndpoint = `${apiBaseUrl}/api/saveIngredients`;
-
-    fetch(serverEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(ingredientList),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+      }
+    
+      const serverEndpoint = `${apiBaseUrl}/api/saveIngredients`;
+      setLoading(true);
+    
+      fetch(serverEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(ingredientList),
       })
-      .then((data) => {
-        console.log('Server response:', data);
-        // You can perform additional actions based on the server response here
-        return;
-      })
-      .catch((error) => {
-        console.error('Error during fetch operation:', error);
-        // Handle error scenarios here
-        return;
-      });
-      navigate("/components/Page2Components/HomeP2", { state: { ingredientList } });
-
-  };
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Server response:', data);
+          // You can perform additional actions based on the server response here
+        })
+        .catch((error) => {
+          console.error('Error during fetch operation:', error);
+          // Handle error scenarios here
+        })
+        .finally(() => {
+          setLoading(false);
+          navigate("/components/Page2Components/HomeP2", { state: { ingredientList } });
+        });
+    };
+    
 
   return (
-    <div className="Main">
+    <div className={`Main ${loading ? 'grayed-out' : ''}`}>
+    {loading && (
+      <div className="loading-overlay">
+        <div className="loading-spinner-container">
+          <div className="loading-spinner"></div>
+          <div>Please wait...</div>
+        </div>
+      </div>
+    )}
       <h1 className="Main_upper_text">What Would You Like To Cook?</h1>
       <p className='line1_P1'></p>
       <h5 className="ingredients">ingredients: </h5>

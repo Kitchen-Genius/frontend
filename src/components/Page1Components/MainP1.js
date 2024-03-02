@@ -155,13 +155,9 @@ export default function MainP1() {
     
       let apiBaseUrl;
     
-      if (window.location.hostname === "localhost") {
-        apiBaseUrl = "http://localhost:8000";
-      } else {
-        apiBaseUrl = "https://frontend-41ag.onrender.com";
-      }
+      apiBaseUrl = "https://frontend-41ag.onrender.com";
     
-      const serverEndpoint = `${apiBaseUrl}/api/saveIngredients`;
+      const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
       setLoading(true);
     
       fetch(serverEndpoint, {
@@ -175,7 +171,9 @@ export default function MainP1() {
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
+          console.log('Server response:', response);
           return response.json();
+          
         })
         .then((data) => {
           console.log('Server response:', data);

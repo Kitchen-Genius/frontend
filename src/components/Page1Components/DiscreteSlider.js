@@ -36,38 +36,39 @@ const DiscreteSlider = (props) => {
   }
   };
 
+
   const handleChange = (event, value) => {
     let CookingTime = [];
 
     if (value <= 5) {
-      CookingTime = "5 Min";
+      CookingTime = "5";
 
     } else if (value <= 10) {
-      CookingTime = "15 Min";
+      CookingTime = "15";
       
     } else if (value <= 15) {
-      CookingTime = "25 Min";
+      CookingTime = "25";
     }
       else if (value <= 20) {
-      CookingTime = "30 Min";
+      CookingTime = "30";
     }
       else if (value <= 25) {
-      CookingTime = "1H";
+      CookingTime = "60";
     }
       else if (value <= 30) {
-      CookingTime = "2H";
+      CookingTime = "120";
     }
       else if (value <= 35) {
-      CookingTime = "3H";
+      CookingTime = "180";
     }
       else if (value <= 40) {
-      CookingTime = "4H";
+      CookingTime = "240";
     }
       else if (value <= 45) {
-      CookingTime = "5H";
+      CookingTime = "300";
     }
       else if (value <= 50) {
-      CookingTime = "6H";
+      CookingTime = "360";
     }
     // Update the ingredient list using setIngredientList
     props.setIngredientList((prevList) => {
@@ -90,7 +91,7 @@ const DiscreteSlider = (props) => {
           height: 10
         }}
         aria-label="Temperature"
-        defaultValue={30}
+        defaultValue={25}
         valueLabelFormat={valueLabelFormat}
         valueLabelDisplay="auto"
         step={5}

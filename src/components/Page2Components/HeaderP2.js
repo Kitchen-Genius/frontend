@@ -12,26 +12,24 @@ export default function HeaderP2(props) {
   useEffect(() => {
     const receiveIntoFunc = () => {
       if (props.ingredientList && typeof props.ingredientList === 'object') {
-        const intolerances = Object.keys(props.ingredientList)
-          .filter((ingredient) =>
-            ['High_protein', 'Low_calories', 'Vegetarian', 'Lactose_free', 'Gluten_free', 'Nut_free'].includes(ingredient)
-          );
-
-        setIntolerances(intolerances);
-
-        const ingredients = Object.entries(props.ingredientList)
-          .filter(([, value]) => typeof value === 'object')
+        const intolerances = Object.entries(props.ingredientList)
+          .filter(([ingredient, value]) =>
+            ['High_protein', 'Low_calories', 'Vegetarian', 'dairyFree', 'Gluten_free', 'veryHealthy'].includes(ingredient) && value
+          )
           .map(([key]) => key);
-
+  
+        setIntolerances(intolerances);
+  
+        const ingredients = props.ingredientList.ingredients || [];
         setIngredients(ingredients);
       }
     };
-
+  
     const cookingTime = props.ingredientList?.CookingTime;
     if (cookingTime !== undefined) {
       setTime(cookingTime);
     }
-
+  
     receiveIntoFunc();
   }, [props.ingredientList]);
 
@@ -82,9 +80,9 @@ export default function HeaderP2(props) {
         <div className="Level_p2">
           <h3>time: </h3>
           {Time !== null && (
-            <p style={{ ...buttonLevelStyle, margin: '2px 5px' }}>{Time}</p>
+            <p style={{ ...buttonLevelStyle, margin: '2px 5px' }}>{Time} m</p>
           )}
-          {console.log('Time:', Time)}
+          
         </div>
       </div>
     </>

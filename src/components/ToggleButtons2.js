@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppleIcon from '@mui/icons-material/Apple';
-import LocalPizzaIcon from '@mui/icons-material/LocalPizza'; // Replace BreadSlice
-import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage'; // Replace Eco
-import EcoIcon from '@mui/icons-material/Nature'; // New nature-related icon
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
+import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
+import EcoIcon from '@mui/icons-material/Nature';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import '../style/cssP1.css'
+import '../style/cssP1.css';
+
 const ToggleButtons2 = (props) => {
   const [selectedButtons, setSelectedButtons] = useState([]);
 
@@ -26,6 +27,21 @@ const ToggleButtons2 = (props) => {
     High_protein: 'rgba(240, 240, 240, 1)',
   };
 
+  useEffect(() => {
+    // Initialize selectedButtons state to an empty array
+    setSelectedButtons([]);
+
+    // Initialize ingredientList with all buttons set to false
+    props.setIngredientList((prevList) => {
+      const updatedList = {};
+      Object.keys(buttonIcons).forEach((name) => {
+        updatedList[name] = false;
+      });
+      
+      return updatedList;
+    });
+  }, []); // Empty dependency array ensures the effect runs once on component mount
+
   const handleButtonClick = (buttonName) => {
     setSelectedButtons((prevButtons) => {
       if (prevButtons.includes(buttonName)) {
@@ -42,7 +58,7 @@ const ToggleButtons2 = (props) => {
 
       // Toggle the button in the updatedList
       if (updatedList[buttonName]) {
-        delete updatedList[buttonName];
+         updatedList[buttonName] = false;
       } else {
         updatedList[buttonName] = true;
       }

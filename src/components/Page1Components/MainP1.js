@@ -46,15 +46,16 @@ export default function MainP1() {
 
 
   const createJsonFile = () => {
-    const sampleIngredientList = Object.fromEntries(
-      Object.entries(ingredientList).slice(0, 10)
-    );
-
+    const sampleIngredientList = {
+      ...ingredientList, // Include existing ingredient list properties
+      ingredients: ingredientList.ingredients?.slice(0, 10), // Include first 10 ingredients
+    };
+  
     // Example: create a Blob from the first 10 ingredients
     const jsonBlob = new Blob([JSON.stringify(sampleIngredientList)], {
       type: 'application/json',
     });
-
+  
     // Example: save the Blob as a JSON file
     saveJsonToFile(jsonBlob, 'sample_ingredient_list.json');
   };
@@ -71,34 +72,24 @@ export default function MainP1() {
     window.URL.revokeObjectURL(url);
   };
 
-  const renderIngredients = () => {
-    return (
-      <div>
-        <ul>
-          {Object.keys(ingredientList)
-            .slice(-5)
-            .map((ingredientName, index) =>
-              ingredientName !== 'CookingTime' &&
-              ingredientName !== 'dessert' &&
-              ingredientName !== 'dinner' &&
-              ingredientName !== 'lunch' &&
-              ingredientName !== 'breakfast' &&
-              ingredientName !== 'specialRequests' &&
-              ingredientName !== 'veryHealthy' &&
-              ingredientName !== 'Low_calories' &&
-              ingredientName !== 'dairyFree' &&
-              ingredientName !== 'Gluten_free' &&
-              ingredientName !== 'Vegetarian' &&
-              ingredientName !== 'High_protein' ? (
+ 
+    const renderIngredients = () => {
+      const ingredientsArray = ingredientList.ingredients || [];
+  
+      return (
+        <div>
+          <ul>
+            {ingredientsArray
+              .slice(-5)
+              .map((ingredient, index) => (
                 <li className="MainDisplayedIngredents" key={index}>
-                  {ingredientName}
+                  {ingredient}
                 </li>
-              ) : null
-          )}
-        </ul>
-      </div>
-    );
-  };
+              ))}
+          </ul>
+        </div>
+      );
+    };
 
   const handleSpecialRequestsChange = (event) => {
     setSpecialRequests(event.target.value);
@@ -132,14 +123,15 @@ export default function MainP1() {
       return;
     }
 
-    if (ingredientList.hasOwnProperty(ingredient)) {
+    if (ingredientList.ingredients && ingredientList.ingredients.includes(ingredient)) {
       console.log('This ingredient is already added');
+      setIngredient('')
       return;
     }
 
     setIngredientList((prevList) => ({
       ...prevList,
-      [ingredient]: { id: csvList.find((item) => item[0] === ingredient)[1], name: ingredient },
+      ingredients: [...(prevList.ingredients || []), ingredient],
     }));
 
     console.log(ingredientList);
@@ -147,46 +139,54 @@ export default function MainP1() {
   };
 
   
-  const submitSearch = () => {
-    if (Object.keys(ingredientList).length === 0) {
-      alert('Please insert ingredients and choose from the menu');
-      return;
-    }
-  
-    let apiBaseUrl;
-  
-    apiBaseUrl = "https://frontend-41ag.onrender.com";
-  
-    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
-    setLoading(true);
-  
-    fetch(serverEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(ingredientList),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        console.log('Server response:', response);
-        return response.json();
+    const submitSearch = () => {
+      if (Object.keys(ingredientList).length === 0) {
+        alert('Please insert ingredients and choose from the menu');
+        return;
+      }
+      if (!ingredientList.hasOwnProperty("breakfast","lunch","dinner","dessert")){
+        alert('you must choose meal type');
+        return;
+      }
+
+      if (!ingredientList.hasOwnProperty("CookingTime")){
+        alert('please select CookingTime');
+        return;
+      }
+    
+      let apiBaseUrl;
+    
+      apiBaseUrl = "https://frontend-41ag.onrender.com";
+    
+      const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
+      setLoading(true);
+    
+      fetch(serverEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(ingredientList),
       })
-      .then((data) => {
-        console.log('Server response:', data);
-        // Navigate to HomeP2 with both data and ingredientList
-        navigate("/components/Page2Components/HomeP2", { state: { data, ingredientList } });
-      })
-      .catch((error) => {
-        console.error('Error during fetch operation:', error);
-        // Handle error scenarios here
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Server response:', data);
+          // Navigate to HomeP2 with both data and ingredientList
+          navigate("/components/Page2Components/HomeP2", { state: { data, ingredientList } });
+        })
+        .catch((error) => {
+          console.error('Error during fetch operation:', error);
+          // Handle error scenarios here
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
     
 
   return (

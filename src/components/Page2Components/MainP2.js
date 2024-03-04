@@ -16,7 +16,7 @@ export default function MainP2(props) {
   };
 
   useEffect(() => {
-    setRecipeJson(props.myJson);
+    setRecipeJson(props.myJson); // it needs to be props.myJson
 
     const putRecipeCard = () => {
       Object.entries(recipeJson).forEach(([key, value]) => {

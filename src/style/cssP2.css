@@ -146,7 +146,7 @@
 }
 
 .subTitle {
-  font-size: 12px;
+  font-size: 14px;
   height: 30px;
   width: 100%;;
 
@@ -178,12 +178,15 @@
     justify-content: space-around;
     align-items: center;
     height: 40px; 
+    
     background-color: rgba(0, 59, 84, 0.1);
+    margin-top: 25px;
 }
+
 
 .text_container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
     align-content: center;
     height: 110px;
@@ -200,3 +203,24 @@
     margin-top: 15px;
 
   }
+
+  .line {
+    height: 2px;
+    width: 393px;
+    background-color: rgb(92, 91, 91);
+    margin: 10px auto; /* Adjust margin as needed */
+  }
+
+  .buttons_container{
+    width: 100px;
+    margin-left: 75px;
+    height: 100px;
+}
+
+.like_button{
+
+    position: relative;
+    top: 3px;
+
+}
+

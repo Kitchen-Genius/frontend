@@ -5,21 +5,29 @@ import SignIn from './components/SignIn';
 import Home from './components/Home';
 import HomeP2 from './components/Page2Components/HomeP2';
 import HomeP3 from './components/Page3Components/HomeP3';
+import { useSelector } from 'react-redux';
+import Favorites from './components/Favorites';
+
 
 
 function App() {
+  const user = useSelector(state => state.user)
+  console.log(user)
   return (
     <div className="App">
-
+    
+   
       <Router>
         <Routes>
-          <Route path="/" element={<SignIn />} />
-          <Route path="/components/Home" element={<Home />} />
-          <Route path="/components/Page2Components/HomeP2" element={<HomeP2 />} />
+          <Route path="/" element={<SignIn  />} />
+          {user.email?<><Route path="/components/Home" element={<Home />} />
+          <Route path="/components/Page2Components/HomeP2" element={<HomeP2  />} />
           <Route path="/components/Page3Components/HomeP3" element={<HomeP3 />} />
+          <Route path="/components/Favorites" element={<Favorites />} /></>:
+          <Route path='*' element={<SignIn />} />  }
+          
         </Routes>
       </Router>
-   
     </div>
   );
 }

@@ -167,6 +167,7 @@ export default function MainP1() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(ingredientList),
+        
       })
         .then((response) => {
           if (!response.ok) {
@@ -177,13 +178,14 @@ export default function MainP1() {
         .then((data) => {
           console.log('Server response:', data);
           // Navigate to HomeP2 with both data and ingredientList
-          navigate("/components/Page2Components/HomeP2", { state: { data, ingredientList } });
+         
         })
         .catch((error) => {
           console.error('Error during fetch operation:', error);
           // Handle error scenarios here
         })
         .finally(() => {
+          navigate("/components/Page2Components/HomeP2", { state: {  ingredientList } });
           setLoading(false);
         });
     };

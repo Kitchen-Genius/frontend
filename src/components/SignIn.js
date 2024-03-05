@@ -5,57 +5,70 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
-// import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import bellImage from "./../my_Images/bell.png";
-
-
-
-
-function Copyright(props) {
-
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { setUser } from './Store';
+import { useDispatch } from 'react-redux';
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const isValidEmail = (email) => {
-    // Basic email format validation using a regular expression
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-
+  
+    
     if (!isValidEmail(email)) {
       alert('Invalid email format');
       return;
     }
     if (password === "") {
-      alert('must insert password');
+      alert('Must insert password');
       return;
     }
 
-    console.log({
-      email,
-      password,
-    });
-    
-    navigate('/components/Home');
+    try {
+      const response = await fetch('YOUR_SERVER_API_ENDPOINT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {   
+        
+        console.error('Server error:', response.statusText);
+        alert('Server error. Please try again.');
+        return;
+      }
+
+      const responseData = await response.json();
+
+      if (responseData.valid_user === true) {
+        dispatch(setUser({ email, password, username: "", imgUrl: "", id: 0, liked: false }));
+        navigate('/components/Home');
+      } else {
+        alert('Invalid email or password. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
   return (
@@ -112,7 +125,6 @@ export default function SignIn() {
            
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

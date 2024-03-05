@@ -1,10 +1,15 @@
 
+import { Button } from '@mui/material'
 import my_Images from '../../my_Images/kitchengenius.png'
 import '../../style/cssP1.css'
+import { setUser } from '../Store'
+import { useDispatch, useSelector } from 'react-redux';
 // import axios from 'axios';
 
 export default function HeaderP1 () {
-    
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user);
+
      /*   const [stevenPic, setStevenPic] = useState(null);
       
         useEffect(() => {
@@ -23,8 +28,10 @@ export default function HeaderP1 () {
 
     return (
         <>
+         <Button sx={{ marginLeft: "320px" }} onClick={()=> dispatch(setUser({}))}>logout</Button>
         <div className='kitchenIMG'>
             <img src={my_Images} alt="kitchengenius"/>
+           
         </div>
         <div className='Rectangle_gray_p1'>
             <div className='Steven_square_p1'>

@@ -2,8 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Search, Favorite, Settings } from '@mui/icons-material';
 import '../../style/cssP1.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../Store';
 
 export default function FooterP1(props) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   return (
     <div className="FooterP1">
@@ -18,7 +22,7 @@ export default function FooterP1(props) {
         </div>
     </Link>
      
-      <Link to="/favorite">
+      <Link to="/components/favorites">
         <div className="icon">
           <Favorite fontSize="small" color="error" />
         </div>

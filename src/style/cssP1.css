@@ -88,6 +88,7 @@
     text-align: center;
     z-index: 1001; /* Make sure the spinner is above the overlay */
   }
+ 
   
   .loading-spinner {
     border: 8px solid rgba(255, 255, 255, 0.3); /* Adjust the alpha value for transparency */
@@ -297,4 +298,13 @@
   }
 .insideButtons {
     display: flex;
+  }
+
+  .favorites{
+    width: 393px;
+    height: 852px;
+    display: flex;
+    flex-direction: column;
+
+
   }

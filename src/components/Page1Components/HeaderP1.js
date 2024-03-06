@@ -10,42 +10,21 @@ export default function HeaderP1() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [userData, setUserData] = useState(null);
+  
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        // Replace 'user-information-endpoint' with the actual endpoint for user information
-        // אני שולח את המייל וצריך לקבל את כל הפרטים של היוזר
-        const response = await axios.post('user-information-endpoint', {
-          email: user.email,
-        });
+    setUserData(user);
+  }, [user]);
 
-        const userData = response.data;
+  console.log(user)
 
-        // Assuming userData contains fields like username, imgUrl, id, etc.
-        // Modify the setUser dispatch accordingly based on your user data structure
-        dispatch(
-          setUser({
-            ...user, // Copy existing properties from user
-            username: userData.username,
-            imgUrl: userData.img,
-            id: userData.user_id,
-            // Add other fields as needed
-          })
-        );
-
-        setUserData(userData);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
-  }, [dispatch, user.email]);
+  const handleLogout = () => {
+    dispatch(setUser({}));
+  };
 
   return (
     <>
-      <Button sx={{ marginLeft: '320px' }} onClick={() => dispatch(setUser({}))}>
+      <Button sx={{ marginLeft: '320px' }} onClick={handleLogout}>
         Logout
       </Button>
       <div className='kitchenIMG'>
@@ -53,10 +32,10 @@ export default function HeaderP1() {
       </div>
       <div className='Rectangle_gray_p1'>
         <div className='Steven_square_p1'>
-          <p className='Hader_text_p1'>Hi, {userData?.username || 'Guest'}</p>
+          <p className='Hader_text_p1'>Hi, {user?.username || 'Guest'}</p>
           <div className='Steven_pic_p1'>
             {/* Display user profile picture */}
-            {userData?.imgUrl && <img src={userData.imgUrl} alt='user-pic' />}
+            {user?.imgUrl && <img src={user.imgUrl} alt='user-pic' />}
           </div>
         </div>
       </div>

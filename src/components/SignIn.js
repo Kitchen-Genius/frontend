@@ -52,7 +52,7 @@ export default function SignIn() {
         return;
       }
 
-      if (response.data == true) {
+      if (typeof response.data === "object") {
         dispatch(setUser({ email, password, username: "", imgUrl: "", id: 0, liked: false }));
         navigate('/components/Home');
       } else {

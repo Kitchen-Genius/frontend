@@ -127,15 +127,11 @@ export default function MainP1() {
       return;
     }
   
-    let apiBaseUrl;
   
-    apiBaseUrl = 'https://frontend-41ag.onrender.com';
-  
-    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
     setLoading(true);
   
     try {
-      const response = await fetch(serverEndpoint, {
+      const response = await fetch("https://backend-wp4c.onrender.com/recipes/search", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

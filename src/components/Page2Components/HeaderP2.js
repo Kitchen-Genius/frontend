@@ -3,11 +3,15 @@ import my_Images from '../../my_Images/kitchengenius.png';
 import AlertDialog from './AlertDialog';
 import AlertDialog2 from './AlertDialog2';
 import '../../style/cssP2.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../Store';
 
 export default function HeaderP2(props) {
   const [Intolerances, setIntolerances] = useState([]);
   const [Ingredients, setIngredients] = useState([]);
   const [ShowTime, setTime] = useState(null);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const receiveIntoFunc = () => {
@@ -42,7 +46,9 @@ export default function HeaderP2(props) {
         <div className="Bell_p2"></div>
         <div className="Steven_square_p1">
           <p className="Hader_text_p1">Hi, Steve</p>
-          <div className="Steven_pic_p1"></div>
+          <div className="Steven_pic_p1">
+          {user.imgUrl && <img src={user.imgUrl} alt="user-pic" />}
+          </div>
         </div>
       </div>
       <div className="TextP2">

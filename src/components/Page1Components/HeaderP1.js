@@ -16,7 +16,7 @@ export default function HeaderP1() {
     setUserData(user);
   }, [user]);
 
-  console.log(user)
+  console.log(user.imgUrl)
 
   const handleLogout = () => {
     dispatch(setUser({}));
@@ -32,10 +32,10 @@ export default function HeaderP1() {
       </div>
       <div className='Rectangle_gray_p1'>
         <div className='Steven_square_p1'>
-          <p className='Hader_text_p1'>Hi, {user?.username || 'Guest'}</p>
+          <p className='Hader_text_p1'>Hi, {user.username}</p>
           <div className='Steven_pic_p1'>
             {/* Display user profile picture */}
-            {user?.imgUrl && <img src={user.imgUrl} alt='user-pic' />}
+            {user.imgUrl && <img src={user.imgUrl} alt='user-pic' />}
           </div>
         </div>
       </div>

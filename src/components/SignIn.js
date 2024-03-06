@@ -44,7 +44,7 @@ export default function SignIn() {
     
     apiBaseUrl = "https://frontend-41ag.onrender.com";
   
-    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
+    const serverEndpoint = `${apiBaseUrl}/auth/login`;
   
     try {
       const response = await fetch(serverEndpoint, {  // Use serverEndpoint here

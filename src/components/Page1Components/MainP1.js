@@ -171,20 +171,20 @@ export default function MainP1() {
       <h5 className="ingredients">ingredients: </h5>
       <div className="ingredients_box">
         <form className="ingredients_box_form" onSubmit={handleSubmit}>
-          <label>
-            <input
-              list="ingredientsList"
-              type="text"
-              value={ingredient}
-              onChange={handleInputChange}
-              placeholder="type here"
-            ></input>
-            <datalist id="ingredientsList">
-              {ingredientOptions.map((option, index) => (
-                <option key={index} value={option} />
-              ))}
-            </datalist>
-          </label>
+        <label>
+  <input
+    type="text"
+    value={ingredient}
+    onChange={handleInputChange}
+    placeholder="type here"
+    list="ingredientsList"
+  />
+  <datalist id="ingredientsList" max="3">
+    {ingredientOptions.map((option, index) => (
+      <option key={index} value={option} />
+    ))}
+  </datalist>
+</label>
           <label>
             <button type="submit">Add Here</button>
           </label>

@@ -24,15 +24,12 @@ export default function HeaderP1() {
 
         // Assuming userData contains fields like username, imgUrl, id, etc.
         // Modify the setUser dispatch accordingly based on your user data structure
-        dispatch(
-          setUser({
-            ...user, // Copy existing properties from user
-            username: userData.username,
-            imgUrl: userData.img,
-            id: userData.user_id,
-            // Add other fields as needed
-          })
-        );
+        dispatch(setUser({
+          username: userData.username,
+          imgUrl: userData.img,
+          id: userData.user_id,
+          // Add other fields as needed
+        }));
 
         setUserData(userData);
       } catch (error) {

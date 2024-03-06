@@ -39,42 +39,54 @@ const DiscreteSlider = (props) => {
 
   const handleChange = (event, value) => {
     let CookingTime = [];
+    let ShowTime = [];
 
     if (value <= 5) {
       CookingTime = "5";
+      ShowTime = "5m";
 
     } else if (value <= 10) {
       CookingTime = "15";
+      ShowTime = "15m";
       
     } else if (value <= 15) {
       CookingTime = "25";
+      ShowTime = "25m";
     }
       else if (value <= 20) {
       CookingTime = "30";
+      ShowTime = "30m";
     }
       else if (value <= 25) {
       CookingTime = "60";
+      ShowTime = "1H";
     }
       else if (value <= 30) {
       CookingTime = "120";
+      ShowTime = "2H";
     }
       else if (value <= 35) {
       CookingTime = "180";
+       ShowTime = "3H";
     }
       else if (value <= 40) {
       CookingTime = "240";
+      ShowTime = "4H";
     }
       else if (value <= 45) {
       CookingTime = "300";
+      ShowTime = "5H";
     }
       else if (value <= 50) {
       CookingTime = "360";
+      ShowTime = "6H";
     }
     // Update the ingredient list using setIngredientList
     props.setIngredientList((prevList) => {
       const updatedList = {
         ...prevList,
-        CookingTime
+        CookingTime,
+        ShowTime
       };
 
       

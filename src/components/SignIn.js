@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import bellImage from "./../my_Images/bell.png";
 import { setUser } from './Store';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const defaultTheme = createTheme();
 
@@ -26,11 +27,12 @@ export default function SignIn() {
   };
 
   const handleSubmit = async (event) => {
+    
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-  
+
     if (!isValidEmail(email)) {
       alert('Invalid email format');
       return;
@@ -41,31 +43,21 @@ export default function SignIn() {
     }
 
     let apiBaseUrl;
-    
-    apiBaseUrl = "https://frontend-41ag.onrender.com";
-  
-    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
-  
+
+    apiBaseUrl = "https://backend-wp4c.onrender.com/auth/login";
+
     try {
-      const response = await fetch(serverEndpoint, {  // Use serverEndpoint here
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      if (!response.ok) {   
+      const response = await axios.post(apiBaseUrl, { email, password });
+
+      if (!response.data) {
         console.error('Server error:', response.statusText);
         alert('Server error. Please try again.');
         return;
       }
-  
-      const responseData = await response.json();
-  
-      if (responseData.valid_user === true) {
+
+      if (response.data === true) {
         dispatch(setUser({ email, password, username: "", imgUrl: "", id: 0, liked: false }));
-        navigate('/components/Home');
+       navigate('/components/Home');
       } else {
         alert('Invalid email or password. Please try again.');
       }
@@ -74,7 +66,6 @@ export default function SignIn() {
       alert('An error occurred. Please try again.');
     }
   };
-  
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -87,9 +78,9 @@ export default function SignIn() {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-        > 
-         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-         <img src={bellImage} alt="kitchengenius.png" />
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <img src={bellImage} alt="kitchengenius.png" />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
@@ -127,7 +118,6 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-           
           </Box>
         </Box>
       </Container>

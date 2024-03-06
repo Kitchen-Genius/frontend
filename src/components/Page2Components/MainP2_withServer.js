@@ -64,9 +64,8 @@ export default function MainP2(props) {
 
     putRecipeCard();
   }, [recipeJson]);
-    //  .פה שולח איידי של מתקון ספציפי. איידי של יוזר. ובוליאן של טרו או פולסס
-    // { recipeId: user.recipeId, id: user.id, liked: user.liked }
-    const sendLikeToServer = async (data) => {
+
+  const sendLikeToServer = async (data) => {
     try {
       const response = await axios.post('YOUR_SERVER_API_ENDPOINT', data, {
         headers: {

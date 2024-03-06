@@ -7,7 +7,7 @@ import '../../style/cssP2.css';
 export default function HeaderP2(props) {
   const [Intolerances, setIntolerances] = useState([]);
   const [Ingredients, setIngredients] = useState([]);
-  const [Time, setTime] = useState(null);
+  const [ShowTime, setTime] = useState(null);
 
   useEffect(() => {
     const receiveIntoFunc = () => {
@@ -25,8 +25,8 @@ export default function HeaderP2(props) {
       }
     };
   
-    const cookingTime = props.ingredientList?.CookingTime;
-    if (cookingTime !== undefined) {
+    const cookingTime = props.ingredientList?.ShowTime;
+    if (ShowTime !== undefined) {
       setTime(cookingTime);
     }
   
@@ -79,18 +79,19 @@ export default function HeaderP2(props) {
         </div>
         <div className="Level_p2">
           <h3>time: </h3>
-          {Time !== null && (
-            <p style={{ ...buttonLevelStyle, margin: '2px 5px' }}>{Time} m</p>
+          {ShowTime !== null && (
+            <p style={{ ...buttonLevelStyle, margin: '2px 5px' }}>{ShowTime}</p>
           )}
           
         </div>
       </div>
+      
     </>
   );
 }
 
 const buttonStyle = {
-  width: '90px',
+  
   height: '20px',
   padding: '6px 10px',
   borderRadius: '8px',

@@ -215,6 +215,7 @@
     height: 230px;
     width: 393px;
     flex-wrap: wrap;
+    margin-top: 50px;
     
 }
 
@@ -266,9 +267,10 @@
 
 .finalSubmit{
 
+    margin-bottom: 20px;
     height: 37px;
     width: 141px;
-    background-color: #0072B2;
+    background-color: #0088ff;
     margin-right: 14px;
 
 }

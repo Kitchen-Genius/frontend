@@ -9,7 +9,6 @@ export default function HomeP3() {
     const specificIngredient = location.state ? location.state.value : null;
     const ingredientList = location.state? location.state.ingredientList : null;
     const analyzedInstructions = specificIngredient.analyzedInstructions;
-    const [currntStep, setCurrntStep] = useState(0);
 
     return (
         <div className="lay_out">

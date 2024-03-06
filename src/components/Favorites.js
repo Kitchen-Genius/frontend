@@ -1,20 +1,24 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../components/Store';
+import { useState } from 'react';
 import axios from 'axios';
-import "../style/cssP1.css";
+import '../style/cssP1.css';
 
 export default function Favorites() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
+  // State to hold the fetched data
+  const [favoritesData, setFavoritesData] = useState([]);
+
   useEffect(() => {
-    // Fetch data from the server
+    // צריך לקבל רשימת לייקים של היוזר
     const fetchData = async () => {
       try {
         const response = await axios.get('YOUR_SERVER_API_ENDPOINT');
-        // Handle the response data here
-        console.log(response.data);
+        // Set the fetched data to the state
+        setFavoritesData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -30,14 +34,12 @@ export default function Favorites() {
         <h1>Your favorites is empty</h1>
       ) : (
         <>
-          {/* Your content for when user.liked is true */}
-          <h1>Favorites:</h1>
+          
           <div className="favorites_container">
-            <h1>Favorites</h1>
-            <h1>Favorites</h1>
-            <h1>Favorites</h1>
-            <h1>Favorites</h1>
-            <h1>Favorites</h1>
+            {/* Render titles from the fetched data */}
+            {favoritesData.map((dataItem) => (
+              <h1 key={dataItem.id}>{dataItem.title}</h1>
+            ))}
           </div>
         </>
       )}

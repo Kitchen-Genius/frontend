@@ -14,8 +14,8 @@ const ToggleButtons2 = (props) => {
     Low_calories: <LocalPizzaIcon />,
     dairyFree: <EmojiFoodBeverageIcon />,
     Gluten_free: <LocalPizzaIcon />,
-    Vegetarian: <EcoIcon />,
     High_protein: <FitnessCenterIcon />,
+    Vegetarian: <EcoIcon />,
   };
 
   const buttonColors = {
@@ -68,7 +68,7 @@ const ToggleButtons2 = (props) => {
   };
 
   const buttonStyle = {
-    margin: '0 5px',
+    margin: '5px 5px',
     padding: '6px 10px',
     borderRadius: '8px',
     cursor: 'pointer',

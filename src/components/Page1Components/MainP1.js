@@ -45,32 +45,7 @@ export default function MainP1() {
   }, []);
 
 
-  const createJsonFile = () => {
-    const sampleIngredientList = {
-      ...ingredientList, // Include existing ingredient list properties
-      ingredients: ingredientList.ingredients?.slice(0, 10), // Include first 10 ingredients
-    };
   
-    // Example: create a Blob from the first 10 ingredients
-    const jsonBlob = new Blob([JSON.stringify(sampleIngredientList)], {
-      type: 'application/json',
-    });
-  
-    // Example: save the Blob as a JSON file
-    saveJsonToFile(jsonBlob, 'sample_ingredient_list.json');
-  };
-
-  const saveJsonToFile = (jsonBlob, filename) => {
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.style = 'display: none';
-  
-    const url = window.URL.createObjectURL(jsonBlob);
-    a.href = url;
-    a.download = filename;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  };
 
  
     const renderIngredients = () => {
@@ -91,9 +66,7 @@ export default function MainP1() {
       );
     };
 
-  const handleSpecialRequestsChange = (event) => {
-    setSpecialRequests(event.target.value);
-  };
+ 
 
   const handleSpecialRequestsSubmit = (event) => {
     event.preventDefault();
@@ -177,12 +150,12 @@ export default function MainP1() {
         })
         .then((data) => {
           console.log('Server response:', data);
-          // Navigate to HomeP2 with both data and ingredientList
+         
          
         })
         .catch((error) => {
           console.error('Error during fetch operation:', error);
-          // Handle error scenarios here
+         
         })
         .finally(() => {
           navigate("/components/Page2Components/HomeP2", { state: {  ingredientList } });
@@ -271,26 +244,14 @@ export default function MainP1() {
         </h5>
         </div>
       <div className="Any_special">
-        
-        <form onSubmit={handleSpecialRequestsSubmit}>
-          <input
-            type="text"
-            value={specialRequests}
-            onChange={handleSpecialRequestsChange}
-            placeholder="type here..."
-          ></input>
-          <label>
-            <button type="submit">click</button>
-          </label>
-        </form>
         <div className="ToggleButtons2">
           <ToggleButtons2 ingredientList={ingredientList} setIngredientList={setIngredientList} />
         </div>
+        <div className='line1_P1' ></div>
         <button className="finalSubmit" onClick={submitSearch}>
           Search
         </button>
       </div>
-      <button onClick={createJsonFile}>Create JSON File</button>
     </div>
   );
 }

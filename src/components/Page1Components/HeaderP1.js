@@ -16,7 +16,7 @@ export default function HeaderP1() {
     setUserData(user);
   }, [user]);
 
-  console.log(user)
+ 
 
   const handleLogout = () => {
     dispatch(setUser({}));

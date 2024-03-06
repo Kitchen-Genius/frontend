@@ -15,7 +15,7 @@ export default function HeaderP3(props) {
     };
 
     function GoBack() {
-        navigate("/components/Page2Components/HomeP2", { state: {  ingredientList: props.ingredientList } });
+        navigate("/components/Page2Components/HomeP2", { state: { ingredientList: props.ingredientList, recipeJson: props.recipeJson } });
     }
 
     return (

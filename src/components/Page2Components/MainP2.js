@@ -15,21 +15,11 @@ export default function MainP2(props) {
   const [recipeJson, setRecipeJson] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // צריך לקבל פה מתקונים 
-        const response = await axios.get('YOUR_SERVER_API_ENDPOINT');
-        setRecipeJson(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
 
-    fetchData();
-  }, []); // Empty dependency array means this effect runs once on mount
+
 
   useEffect(() => {
+    setRecipeJson(props.myJson || []);
     const putRecipeCard = () => {
       Object.entries(recipeJson).forEach(([key, value], index) => {
         setSelector((prevSelector) => [

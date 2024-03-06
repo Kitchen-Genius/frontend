@@ -9,34 +9,36 @@ export default function Favorites() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  // State to hold the fetched data
+  // State to hold the fetched favorites data
   const [favoritesData, setFavoritesData] = useState([]);
 
   useEffect(() => {
-    // צריך לקבל רשימת לייקים של היוזר
-    const fetchData = async () => {
+    const fetchFavoritesData = async () => {
       try {
-        const response = await axios.get('YOUR_SERVER_API_ENDPOINT');
-        // Set the fetched data to the state
+        // Replace 'favorites-endpoint' with the actual endpoint for fetching favorites data
+        const response = await axios.post('YOUR_FAVORITES_ENDPOINT', {
+          user_id: user.user_id,
+        });
+
+        // Set the fetched favorites data to the state
         setFavoritesData(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching favorites data:', error);
       }
     };
 
-    fetchData(); // Call the fetch data function when the component mounts
-  }, []); // The empty dependency array ensures that this effect runs only once when the component mounts
+    fetchFavoritesData();
+  }, [user.user_id]); // Include user.user_id in the dependency array
 
   return (
     <div className="favorites">
       <h1>Favorites:</h1>
       {user.liked === false ? (
-        <h1>Your favorites is empty</h1>
+        <h1>Your favorites are empty</h1>
       ) : (
         <>
-          
           <div className="favorites_container">
-            {/* Render titles from the fetched data */}
+            {/* Render titles from the fetched favorites data */}
             {favoritesData.map((dataItem) => (
               <h1 key={dataItem.id}>{dataItem.title}</h1>
             ))}

@@ -112,57 +112,53 @@ export default function MainP1() {
   };
 
   
-    const submitSearch = () => {
-      if (Object.keys(ingredientList).length === 0) {
-        alert('Please insert ingredients and choose from the menu');
-        return;
-      }
-      if (!ingredientList.hasOwnProperty("breakfast","lunch","dinner","dessert")){
-        alert('you must choose meal type');
-        return;
-      }
-
-      if (!ingredientList.hasOwnProperty("CookingTime")){
-        alert('please select CookingTime');
-        return;
-      }
-    
-      let apiBaseUrl;
-    
-      apiBaseUrl = "https://backend-wp4c.onrender.com";
-    
-      const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
-      setLoading(true);
-    
-      fetch(serverEndpoint, {
+  const submitSearch = async () => {
+    if (Object.keys(ingredientList).length === 0) {
+      alert('Please insert ingredients and choose from the menu');
+      return;
+    }
+    if (!ingredientList.hasOwnProperty('breakfast', 'lunch', 'dinner', 'dessert')) {
+      alert('you must choose meal type');
+      return;
+    }
+  
+    if (!ingredientList.hasOwnProperty('CookingTime')) {
+      alert('please select CookingTime');
+      return;
+    }
+  
+    let apiBaseUrl;
+  
+    apiBaseUrl = 'https://frontend-41ag.onrender.com';
+  
+    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
+    setLoading(true);
+  
+    try {
+      const response = await fetch(serverEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(ingredientList),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
         
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log('Server response:', data);
-         
-         
-        })
-        .catch((error) => {
-          console.error('Error during fetch operation:', error);
-         
-        })
-        .finally(() => {
-          navigate("/components/Page2Components/HomeP2", { state: {  ingredientList } });
-          setLoading(false);
-        });
-    };
-    
+      }
+  
+      const data = await response.json();
+      console.log('Server response:', data);
+  
+      navigate('/components/Page2Components/HomeP2', { state: { ingredientList, data } });
+    } catch (error) {
+      console.error('Error during fetch operation:', error);
+      // Handle the error accordingly
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={`Main ${loading ? 'grayed-out' : ''}`}>

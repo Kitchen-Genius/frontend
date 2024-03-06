@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -27,7 +25,6 @@ export default function SignIn() {
   };
 
   const handleSubmit = async (event) => {
-    
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
@@ -55,9 +52,9 @@ export default function SignIn() {
         return;
       }
 
-      if (response.data === true) {
+      if (response.data == true) {
         dispatch(setUser({ email, password, username: "", imgUrl: "", id: 0, liked: false }));
-       navigate('/components/Home');
+        navigate('/components/Home');
       } else {
         alert('Invalid email or password. Please try again.');
       }
@@ -105,10 +102,6 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"

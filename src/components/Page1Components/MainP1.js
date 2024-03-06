@@ -129,7 +129,7 @@ export default function MainP1() {
     
       let apiBaseUrl;
     
-      apiBaseUrl = "https://frontend-41ag.onrender.com";
+      apiBaseUrl = "https://backend-wp4c.onrender.com";
     
       const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
       setLoading(true);

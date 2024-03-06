@@ -43,11 +43,9 @@ export default function SignIn() {
     }
 
     let apiBaseUrl;
-    
-    apiBaseUrl = "https://frontend-41ag.onrender.com";
-  
-    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
-  
+
+    apiBaseUrl = "https://backend-wp4c.onrender.com/auth/login";
+
     try {
       const response = await axios.post(apiBaseUrl, { email, password });
 

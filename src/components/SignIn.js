@@ -31,7 +31,6 @@ export default function SignIn() {
     const email = data.get('email');
     const password = data.get('password');
   
-    
     if (!isValidEmail(email)) {
       alert('Invalid email format');
       return;
@@ -41,24 +40,29 @@ export default function SignIn() {
       return;
     }
 
+    let apiBaseUrl;
+    
+    apiBaseUrl = "https://frontend-41ag.onrender.com";
+  
+    const serverEndpoint = `${apiBaseUrl}/api/process-recipe-criteria`;
+  
     try {
-      const response = await fetch('YOUR_SERVER_API_ENDPOINT', {
+      const response = await fetch(serverEndpoint, {  // Use serverEndpoint here
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (!response.ok) {   
-        
         console.error('Server error:', response.statusText);
         alert('Server error. Please try again.');
         return;
       }
-
+  
       const responseData = await response.json();
-
+  
       if (responseData.valid_user === true) {
         dispatch(setUser({ email, password, username: "", imgUrl: "", id: 0, liked: false }));
         navigate('/components/Home');
@@ -70,6 +74,7 @@ export default function SignIn() {
       alert('An error occurred. Please try again.');
     }
   };
+  
 
   return (
     <ThemeProvider theme={defaultTheme}>

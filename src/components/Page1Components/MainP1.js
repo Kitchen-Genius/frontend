@@ -271,7 +271,7 @@ export default function MainP1() {
         </h5>
         </div>
       <div className="Any_special">
-        <p>Any special requests?</p>
+        
         <form onSubmit={handleSpecialRequestsSubmit}>
           <input
             type="text"

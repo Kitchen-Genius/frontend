@@ -14,6 +14,7 @@ export default function MainP2(props) {
   const [selector, setSelector] = useState([]);
   const [recipeJson, setRecipeJson] = useState([]);
   const navigate = useNavigate();
+  console.log(props.myJson)
 
 
 

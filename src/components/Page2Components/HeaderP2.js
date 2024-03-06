@@ -12,6 +12,7 @@ export default function HeaderP2(props) {
   const [ShowTime, setTime] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  
 
   useEffect(() => {
     const receiveIntoFunc = () => {
@@ -46,8 +47,8 @@ export default function HeaderP2(props) {
         <div className="Bell_p2"></div>
         <div className="Steven_square_p1">
           <p className="Hader_text_p1">Hi, Steve</p>
-          <div className="Steven_pic_p1">
-          {user.imgUrl && <img src={user.imgUrl} alt="user-pic" />}
+          <div className="Steven_pic_p1" style={{ backgroundImage: `url(${user.imgUrl}?raw=true)` }} >
+         
           </div>
         </div>
       </div>

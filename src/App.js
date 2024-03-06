@@ -12,7 +12,7 @@ import Favorites from './components/Favorites';
 
 function App() {
   const user = useSelector(state => state.user)
-  console.log(user)
+ 
   return (
     <div className="App">
     

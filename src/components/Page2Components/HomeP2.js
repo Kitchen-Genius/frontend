@@ -9,6 +9,7 @@ export default function HomeP2() {
     const location = useLocation();
     const ingredientList = location.state ? location.state.ingredientList : null;
     const myJson = location.state? location.state.data : null;
+    console(myJson);
     
     
     

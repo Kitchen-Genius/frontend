@@ -33,9 +33,7 @@ export default function HeaderP1() {
       <div className='Rectangle_gray_p1'>
         <div className='Steven_square_p1'>
           <p className='Hader_text_p1'>Hi, {user.username}</p>
-          <div className='Steven_pic_p1'>
-            {/* Display user profile picture */}
-            {user.imgUrl && <img src={user.imgUrl} alt='user-pic' />}
+          <div className='Steven_pic_p1' style={{ backgroundImage: `url(${user.imgUrl}?raw=true)` }}>
           </div>
         </div>
       </div>

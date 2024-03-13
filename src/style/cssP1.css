@@ -306,6 +306,17 @@
     height: 852px;
     display: flex;
     flex-direction: column;
+    background-color: #615656b3;
 
+  }
 
+  .favorites_container{
+
+    height: 800px;
+    width: 393px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: auto;
   }

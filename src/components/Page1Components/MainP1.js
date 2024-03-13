@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import Papa from 'papaparse';
 import csv_files from "../../csv_files/top-1k-ingredients.csv"
 import '../../style/cssP1.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../Store';
+
 
 
 // var newIdCounter = 0;
@@ -18,6 +21,10 @@ export default function MainP1() {
   const [ingredientOptions, setIngredientOptions] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -126,6 +133,8 @@ export default function MainP1() {
       alert('please select CookingTime');
       return;
     }
+
+    dispatch(setUser({ ...user, ingredients: ingredientList }));
   
   
     setLoading(true);

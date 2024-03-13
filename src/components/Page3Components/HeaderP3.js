@@ -5,6 +5,7 @@ import my_Images from '../../my_Images/kitchengenius.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function HeaderP3(props) {
+    
     const navigate = useNavigate();
     const RnamePicStyle = {
         backgroundImage: `url(${props.specificIngredient.image})`,
@@ -15,7 +16,7 @@ export default function HeaderP3(props) {
     };
 
     function GoBack() {
-        navigate("/components/Page2Components/HomeP2", { state: { ingredientList: props.ingredientList, recipeJson: props.recipeJson } });
+        navigate("/components/Page2Components/HomeP2", { state: { ingredientList: props.ingredientList , data: props.myJson} });
     }
 
     return (

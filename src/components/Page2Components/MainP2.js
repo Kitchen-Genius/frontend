@@ -13,49 +13,57 @@ export default function MainP2(props) {
   const [selector, setSelector] = useState([]);
   const [recipeJson, setRecipeJson] = useState([]);
   const navigate = useNavigate();
-  console.log(props.myJson)
+  const Json = props.myJson;
+ 
 
   useEffect(() => {
-    setRecipeJson(props.myJson || []);
-  }, [props.myJson]);
+    setRecipeJson(Json || []);
+  }, [Json]);
 
   useEffect(() => {
-    
-    setRecipeJson(props.myJson || []);
-  }, [props.myJson]);
+    const putRecipeCard = () => {
+      setSelector((prevSelector) =>
+        recipeJson.map((value, index) => (
+          <React.Fragment key={value.id}>
+ <div className='leftContainer'>
+  <h1 className='subTitle'>{value.title}</h1>
+  <div className='text_container'>
+    <p className='time'>time: {value.readyInMinutes}</p>
+    <p className='calories'>calories: {value.Calories}</p>
+    <p className='servings'>servings: {value.servings}</p>
+    <div className='buttons_container'>
+      <button className='start_button' onClick={() => recipeSelected(value)}>
+        Start
+      </button>
+      <button className='like_button' onClick={() => toggleLike(value.id)}>
+        <Favorite
+          fontSize="small"
+          color={likedRecipes.includes(value.id) ? 'error' : 'inherit'}
+        />
+      </button>
+    </div>
+  </div>
+</div>
+<div className='rightContainer'>
+  <div className='recPic'>
+    <img src={value.image} alt="img" />
+  </div>
+</div>
+{index < recipeJson.length - 1 && <div className='line' />}
+          </React.Fragment>
+        ))
+      );
+    };
 
-  useEffect(() => {
-    const recipeCards = recipeJson.map((value, index) => (
-      <React.Fragment key={value.id}>
-        <div className='leftContainer'>
-          <h1 className='subTitle'>{value.title}</h1>
-          <div className='text_container'>
-            <p className='time'>time: {value.readyInMinutes}</p>
-            <p className='calories'>calories: {value.Calories}</p>
-            <p className='servings'>servings: {value.servings}</p>
-            <div className='buttons_container'>
-              <button className='start_button' onClick={() => recipeSelected(value)}>
-                Start
-              </button>
-              <button className='like_button' onClick={() => toggleLike(value.id)}>
-                <Favorite fontSize="small" color={likedRecipes.includes(value.id) ? 'error' : 'inherit'} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className='rightContainer'>
-          <div className='recPic'>
-            <img src={value.image} alt="img" />
-          </div>
-        </div>
-        {index < recipeJson.length - 1 && <div className='line' />}
-      </React.Fragment>
-    ));
-
-    setSelector(recipeCards);
+    putRecipeCard();
   }, [recipeJson]);
 
+  useEffect(() => {
+    // Add any additional logic or side effects related to the selector state here if needed
+  }, [selector]);
+
   const sendLikeToServer = async (data) => {
+    console.log(data);
     try {
       const response = await axios.post('YOUR_SERVER_API_ENDPOINT', data, {
         headers: {
@@ -74,17 +82,16 @@ export default function MainP2(props) {
   };
 
   function recipeSelected(value) {
-    navigate('/components/Page3Components/HomeP3', { state: { value, ingredientList: props.ingredientList, recipeJson: recipeJson } });
-
+    navigate('/components/Page3Components/HomeP3', { state: { value, ingredientList: props.ingredientList , Json} });
   }
 
   async function toggleLike(recipeId) {
-    const updatedLikedRecipes = prevLikedRecipes =>
+    console.log(recipeId);
+    setLikedRecipes((prevLikedRecipes) =>
       prevLikedRecipes.includes(recipeId)
-        ? prevLikedRecipes.filter(id => id !== recipeId)
-        : [...prevLikedRecipes, recipeId];
-
-    setLikedRecipes(updatedLikedRecipes);
+        ? prevLikedRecipes.filter((id) => id !== recipeId)
+        : [...prevLikedRecipes, recipeId]
+    );
 
     if (user.recipeId === recipeId && user.liked === true) {
       dispatch(setUser({ ...user, liked: false }));
@@ -93,12 +100,12 @@ export default function MainP2(props) {
       dispatch(setUser({ ...user, liked: true }));
       console.log('only recipeId is equal - liked set to true');
     } else {
-      dispatch(setUser({ ...user, recipeId, liked: true }));
+      dispatch(setUser({ ...user, recipeId: recipeId, liked: true }));
       console.log('different recipeId - new recipeId and liked set to true');
     }
 
     sendLikeToServer({ recipeId: user.recipeId, id: user.id, liked: user.liked });
   }
 
-  return <div className='recPList'>{selector}</div>;
+  return <div className='recPList'>{recipeJson.length > 0 && selector}</div>;
 }

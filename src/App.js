@@ -6,7 +6,7 @@ import Home from './components/Home';
 import HomeP2 from './components/Page2Components/HomeP2';
 import HomeP3 from './components/Page3Components/HomeP3';
 import { useSelector } from 'react-redux';
-import Favorites from './components/Favorites';
+import Favorites from './components/Page4Components/Favorites';
 
 
 

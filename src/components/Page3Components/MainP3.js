@@ -15,7 +15,7 @@ export default function MainP3(props) {
         <div>
             <div className="Main_P3_container">
                 {props.currntStep && (
-                    <div style={{ display: "flex", flexDirection: "column", marginTop: "30px", height: "170px" }}>
+                    <div style={{ display: "flex", flexDirection: "column", marginTop: "30px", height: "170px" , overflowY: "auto" }}>
                         {props.currntStep[0].steps && (
                             <div style={{ display: "flex", alignItems: "center" }}>
                                 <p>{props.currntStep[0].steps[currentStepIndex].step}</p>

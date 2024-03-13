@@ -12,6 +12,7 @@ export default function HomeP2() {
     
     
     
+    
     return ( 
         <div className="lay_out">
             <HeaderP2  ingredientList={ingredientList}/>

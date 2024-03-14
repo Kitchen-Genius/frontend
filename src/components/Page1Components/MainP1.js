@@ -7,7 +7,7 @@ import Papa from 'papaparse';
 import csv_files from "../../csv_files/top-1k-ingredients.csv"
 import '../../style/cssP1.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../Store';
+import { setUser,setInfor } from '../Store';
 
 
 
@@ -23,6 +23,7 @@ export default function MainP1() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const infor = useSelector((state) => state.user.infor);
   
 
 
@@ -134,7 +135,7 @@ export default function MainP1() {
       return;
     }
 
-    dispatch(setUser({ ...user, ingredients: ingredientList }));
+    
   
   
     setLoading(true);
@@ -155,6 +156,7 @@ export default function MainP1() {
   
       const data = await response.json();
       console.log('Server response:', data);
+      dispatch(setInfor({ ...infor , ingredients: ingredientList , json: data}));
   
       navigate('/components/Page2Components/HomeP2', { state: { ingredientList, data } });
     } catch (error) {

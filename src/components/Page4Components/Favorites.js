@@ -11,6 +11,9 @@ import FooterP2 from "../Page2Components/FooterP2"
 export default function Favorites() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const infor = useSelector((state) => state.infor);
+  console.log(infor)
+
 
   // Use the imported JSON directly
   const Json = myJson;
@@ -25,7 +28,7 @@ export default function Favorites() {
         <div className="favorites_container">
           
           {Json.map((dataItem) => (
-            <RecipeReviewCard key={dataItem.id} recipeData={dataItem} Json={Json} />
+            <RecipeReviewCard key={dataItem.id} recipeData={dataItem} />
           ))}
         </div>
       )}

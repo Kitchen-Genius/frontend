@@ -6,14 +6,29 @@ import { persistReducer, persistStore } from 'redux-persist';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: { email:"" , password:"", username: "", imgUrl: "", id: 0 ,liked: false},
+    user: { 
+      email: "",
+      password: "",
+      username: "",
+      imgUrl: "",
+      id: 0,
+      liked: false,
+    },
+    infor: { 
+      json: "",
+      ingredientList: [],
+    },
   },
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    setInfor: (state, action) => { 
+      state.infor = action.payload;
+    },
   },
 });
+
 
 const userReducer = userSlice.reducer;
 
@@ -24,4 +39,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-export const { setUser } = userSlice.actions;
+export const { setUser , setInfor} = userSlice.actions;

@@ -17,7 +17,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../components/Store';
+import { setUser,setInfor } from '../components/Store';
 import Button from '@mui/material/Button';
 import { GolfCourseRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +32,9 @@ export default function RecipeReviewCard(props) {
   const [clickAble, setClickAble] = useState(true);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const infor = useSelector((state) => state.infor);
   const navigate = useNavigate();
+  console.log(infor)
 
   const handleFavoriteClick = () => {
     if (clickAble) {
@@ -80,11 +82,12 @@ export default function RecipeReviewCard(props) {
           const  json = response.data;
   
           // Navigate to the next page and pass the received data
-          navigate('/components/Page3Components/HomeP3', { state: { value: props.recipeData, Json: json } });
+          navigate('/components/Page3Components/HomeP3', { state: { value: props.recipeData, Json: infor.json } });
         })
         .catch(error => {
           // Handle error if needed
           console.error('Error sending user ID to server:', error);
+          navigate('/components/Page3Components/HomeP3', { state: { value: props.recipeData, ingredientList: infor.ingredients, Json: infor.json  } });
         });
     }
   };

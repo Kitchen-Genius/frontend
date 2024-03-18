@@ -12,6 +12,9 @@ export default function HomeP2() {
     const ingredientList = location.state ? location.state.ingredientList : null;
     const myJson = location.state? location.state.data : null;
     const infor = useSelector((state) => state.infor);
+    const user = useSelector((state) => state.user);
+    
+    
 
     
     return ( 

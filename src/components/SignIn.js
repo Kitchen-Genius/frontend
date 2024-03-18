@@ -54,7 +54,7 @@ export default function SignIn() {
 
       if (typeof response.data === "object") {
        
-        dispatch(setUser({ email, password, username: response.data.username, imgUrl: response.data.img, id: response.data.user_id, liked: false }));
+        dispatch(setUser({ email, password, username: response.data.username, imgUrl: response.data.img_link, id: response.data.user_id, liked: false }));
         navigate('/components/Home');
       } else {
         alert('Invalid email or password. Please try again.');

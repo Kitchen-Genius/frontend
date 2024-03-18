@@ -24,6 +24,7 @@ export default function MainP1() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const infor = useSelector((state) => state.user.infor);
+  console.log(user);
   
 
 

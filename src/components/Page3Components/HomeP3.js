@@ -11,7 +11,9 @@ export default function HomeP3() {
     const analyzedInstructions = specificIngredient.analyzedInstructions;
     const myJson = location.state? location.state.Json : null;
     console.log(myJson);
-    console.log(ingredientList);
+    console.log(specificIngredient);
+    
+    
     
   
 

@@ -34,7 +34,12 @@ export default function RecipeReviewCard(props) {
   const user = useSelector((state) => state.user);
   const infor = useSelector((state) => state.infor);
   const navigate = useNavigate();
-  console.log(infor)
+  console.log(infor.ingredients);
+  console.log(props.recipeData)
+  const Value = props.recipeData.id
+  
+  
+  
 
   const handleFavoriteClick = () => {
     if (clickAble) {
@@ -49,13 +54,13 @@ export default function RecipeReviewCard(props) {
   
     // Send data to the server
     const dataToSend = {
-      userId: user.id,
-      recipeId: props.recipeData.id,
-      isLiked: false
+      user_id: user.id,
+      recipe_id: props.recipeData.id,
+      like: false
     };
   
     // Example of sending data to the server using axios
-    axios.post('YOUR_SERVER_ENDPOINT', dataToSend)
+    axios.post('https://backend-wp4c.onrender.com/users/favorites', dataToSend)
       .then(response => {
         // Handle response if needed
         console.log('Data sent successfully:', response.data);
@@ -73,21 +78,28 @@ export default function RecipeReviewCard(props) {
    
   };
 
+  const getrecipe = {
+    recipe_id: props.recipeData.id,
+  };
+
   const moveToRecipie = () => {
     if (clickAble) {
       // Send user ID to the server
-      axios.post('YOUR_SERVER_ENDPOINT', { userId: user.id })
+      axios.post('https://backend-wp4c.onrender.com/recipes/searchbyid',getrecipe)
         .then(response => {
           // Handle response
           const  json = response.data;
-  
+          
+          // Navigate to the next page
+          
           // Navigate to the next page and pass the received data
-          navigate('/components/Page3Components/HomeP3', { state: { value: props.recipeData, Json: infor.json } });
+          navigate('/components/Page3Components/HomeP3', { state: { value: json, Json: infor.json , ingredientList: infor.ingredients } });
         })
         .catch(error => {
           // Handle error if needed
+          
           console.error('Error sending user ID to server:', error);
-          navigate('/components/Page3Components/HomeP3', { state: { value: props.recipeData, ingredientList: infor.ingredients, Json: infor.json  } });
+          
         });
     }
   };

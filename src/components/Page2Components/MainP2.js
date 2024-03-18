@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../Store';
 import { Favorite } from '@mui/icons-material';
+import { Snackbar } from '@mui/material'; // Import Snackbar
 import axios from 'axios';
 import '../../style/cssP2.css';
 
@@ -12,10 +13,10 @@ export default function MainP2(props) {
   const [likedRecipes, setLikedRecipes] = useState([]);
   const [selector, setSelector] = useState([]);
   const [recipeJson, setRecipeJson] = useState([]);
+  const [openSnackbar, setOpenSnackbar] = useState(false); // State to control the visibility of Snackbar
   const navigate = useNavigate();
   const Json = props.myJson;
  
-
   useEffect(() => {
     setRecipeJson(Json || []);
   }, [Json]);
@@ -25,31 +26,31 @@ export default function MainP2(props) {
       setSelector((prevSelector) =>
         recipeJson.map((value, index) => (
           <React.Fragment key={value.id}>
- <div className='leftContainer'>
-  <h1 className='subTitle'>{value.title}</h1>
-  <div className='text_container'>
-    <p className='time'>time: {value.readyInMinutes}</p>
-    <p className='calories'>calories: {value.Calories}</p>
-    <p className='servings'>servings: {value.servings}</p>
-    <div className='buttons_container'>
-      <button className='start_button' onClick={() => recipeSelected(value)}>
-        Start
-      </button>
-      <button className='like_button' onClick={() => toggleLike(value.id)}>
-        <Favorite
-          fontSize="small"
-          color={likedRecipes.includes(value.id) ? 'error' : 'inherit'}
-        />
-      </button>
-    </div>
-  </div>
-</div>
-<div className='rightContainer'>
-  <div className='recPic'>
-    <img src={value.image} alt="img" />
-  </div>
-</div>
-{index < recipeJson.length - 1 && <div className='line' />}
+            <div className='leftContainer'>
+              <h1 className='subTitle'>{value.title}</h1>
+              <div className='text_container'>
+                <p className='time'>time: {value.readyInMinutes}</p>
+                <p className='calories'>calories: {value.Calories}</p>
+                <p className='servings'>servings: {value.servings}</p>
+                <div className='buttons_container'>
+                  <button className='start_button' onClick={() => recipeSelected(value)}>
+                    Start
+                  </button>
+                  <button className='like_button' onClick={() => handleLikeClick(value.id)}> {/* Modified onClick */}
+                    <Favorite
+                      fontSize="small"
+                      color={likedRecipes.includes(value.id) ? 'error' : 'inherit'}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className='rightContainer'>
+              <div className='recPic'>
+                <img src={value.image} alt="img" />
+              </div>
+            </div>
+            {index < recipeJson.length - 1 && <div className='line' />}
           </React.Fragment>
         ))
       );
@@ -58,14 +59,9 @@ export default function MainP2(props) {
     putRecipeCard();
   }, [recipeJson]);
 
-  useEffect(() => {
-    // Add any additional logic or side effects related to the selector state here if needed
-  }, [selector]);
-
   const sendLikeToServer = async (data) => {
-    console.log(data);
     try {
-      const response = await axios.post('YOUR_SERVER_API_ENDPOINT', data, {
+      const response = await axios.post('https://backend-wp4c.onrender.com/users/favorites', data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -85,8 +81,7 @@ export default function MainP2(props) {
     navigate('/components/Page3Components/HomeP3', { state: { value, ingredientList: props.ingredientList , Json} });
   }
 
-  async function toggleLike(recipeId) {
-    console.log(recipeId);
+  async function handleLikeClick(recipeId) { // Renamed function to handleLikeClick
     setLikedRecipes((prevLikedRecipes) =>
       prevLikedRecipes.includes(recipeId)
         ? prevLikedRecipes.filter((id) => id !== recipeId)
@@ -104,8 +99,19 @@ export default function MainP2(props) {
       console.log('different recipeId - new recipeId and liked set to true');
     }
 
-    sendLikeToServer({ recipeId: user.recipeId, id: user.id, liked: user.liked });
+    setOpenSnackbar(true); // Open Snackbar when like is clicked
+    sendLikeToServer({ recipe_id: recipeId, user_id: user.id, like: true });
   }
 
-  return <div className='recPList'>{recipeJson.length > 0 && selector}</div>;
+  return (
+    <div className='recPList'>
+      {recipeJson.length > 0 && selector}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={4000} // Hide after 6 seconds
+        onClose={() => setOpenSnackbar(false)} // Close Snackbar on user action
+        message="The recipe has been liked" // Snackbar message
+      />
+    </div>
+  );
 }

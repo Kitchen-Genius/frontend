@@ -12,6 +12,8 @@ import bellImage from "./../my_Images/bell.png";
 import { setUser } from './Store';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 
 const defaultTheme = createTheme();
 
@@ -54,7 +56,7 @@ export default function SignIn() {
 
       if (typeof response.data === "object") {
        
-        dispatch(setUser({ email, password, username: response.data.username, imgUrl: response.data.img_link, id: response.data.user_id, liked: false }));
+        dispatch(setUser({ email, password, username: response.data.name, imgUrl: response.data.img_link, id: response.data.user_id, liked: false }));
         navigate('/components/Home');
       } else {
         alert('Invalid email or password. Please try again.');
@@ -112,6 +114,15 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            <Grid container>
+              <Grid item xs>
+              </Grid>
+              <Grid item>
+                <Link href="/components/SignUp" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>

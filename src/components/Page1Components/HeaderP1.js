@@ -10,7 +10,6 @@ export default function HeaderP1() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [userData, setUserData] = useState(null);
-  console.log(userData)
   
 
   useEffect(() => {

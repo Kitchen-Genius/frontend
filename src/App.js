@@ -7,6 +7,7 @@ import HomeP2 from './components/Page2Components/HomeP2';
 import HomeP3 from './components/Page3Components/HomeP3';
 import { useSelector } from 'react-redux';
 import Favorites from './components/Page4Components/Favorites';
+import SignUp from './components/SignUp';
 
 
 
@@ -20,11 +21,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<SignIn  />} />
+          <Route path="/components/SignUp" element={<SignUp />} />
           {user.email?<><Route path="/components/Home" element={<Home />} />
           <Route path="/components/Page2Components/HomeP2" element={<HomeP2  />} />
           <Route path="/components/Page3Components/HomeP3" element={<HomeP3 />} />
-          <Route path="/components/Favorites" element={<Favorites />} /></>:
-          <Route path='*' element={<SignIn />} />  }
+          <Route path="/components/Favorites" element={<Favorites />} /></> :
+          <Route path='*' element={<SignIn />}  />  }
+         
+          
           
         </Routes>
       </Router>

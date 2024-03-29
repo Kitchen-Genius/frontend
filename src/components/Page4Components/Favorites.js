@@ -1,22 +1,23 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../Store';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
 import '../../style/cssP1.css';
 import RecipeReviewCard from '../RecipeReviewCard';
-import myJson from "../../csv_files/None_processed_recipes.json"
-import FooterP2 from "../Page2Components/FooterP2"
+
+// the Favorites component effectively manages the fetching and rendering of a user's favorite recipes,
+//  providing a user-friendly interface for viewing and accessing their preferred dishes.
+
+
 
 export default function Favorites() {
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   // State to hold the fetched favorites data
   const [favoritesData, setFavoritesData] = useState([]);
 
   useEffect(() => {
-    const fetchFavoritesData = async () => {
+    const fetchFavoritesData = async () => { // we sending to the server the user id and recives all the liked recipes from the data base
       try {
         const response = await axios.post('https://backend-wp4c.onrender.com/users/favorites/list', {
           user_id: user.id,

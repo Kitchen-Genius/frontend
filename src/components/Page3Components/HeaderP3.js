@@ -1,8 +1,10 @@
-
 import React from 'react';
 import '../../style/cssP3.css';
 import my_Images from '../../my_Images/kitchengenius.png';
 import { useNavigate } from 'react-router-dom';
+
+// HeaderP3 component displays the header for the page showing a specific recipe.
+// It includes user information, the recipe name, and a background image representing the recipe.
 
 export default function HeaderP3(props) {
     
@@ -15,6 +17,7 @@ export default function HeaderP3(props) {
         opacity: '0.7', 
     };
 
+    // Function to navigate back to the previous page
     function GoBack() {
         navigate("/components/Page2Components/HomeP2", { state: { ingredientList: props.ingredientList , data: props.myJson} });
     }

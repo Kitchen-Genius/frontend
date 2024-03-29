@@ -5,9 +5,9 @@ import FooterP1 from "../components/Page1Components/FooterP1"
 import { useSelector } from "react-redux"
 
 export default function Home () {
+    // in this component we managing the page1 components and formating them with father div "lay_out"
     const user = useSelector((state)=> state.user)
     console.log(user)
-   
     return (
         <div className="lay_out">
             <HeaderP1 />

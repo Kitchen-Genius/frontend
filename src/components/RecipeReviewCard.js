@@ -16,10 +16,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser,setInfor } from '../components/Store';
+import {  useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
-import { GolfCourseRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 const FavoriteIconButton = styled(IconButton)(({ theme, isLiked }) => ({
@@ -27,20 +25,19 @@ const FavoriteIconButton = styled(IconButton)(({ theme, isLiked }) => ({
 }));
 
 export default function RecipeReviewCard(props) {
+  // this component provides a user interface for users to interact with recipes,
+  // remove them if they want to , and view detailed information about each recipe.
+  // it shows all the recipes that the user liked in mainP2 page 
   const [isLiked, setIsLiked] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
-  const [clickAble, setClickAble] = useState(true);
-  const dispatch = useDispatch();
+  const [clickAble, setClickAble] = useState(true); // this hook makes the pusebility to view the recipe steps only if it wont removed from favorites
   const user = useSelector((state) => state.user);
   const infor = useSelector((state) => state.infor);
   const navigate = useNavigate();
   console.log(infor.ingredients);
   console.log(props.recipeData)
-  const Value = props.recipeData.id
   
   
-  
-
   const handleFavoriteClick = () => {
     if (clickAble) {
       setOpenDialog(true);
@@ -59,7 +56,7 @@ export default function RecipeReviewCard(props) {
       like: false
     };
   
-    // Example of sending data to the server using axios
+    // send data to the server
     axios.post('https://backend-wp4c.onrender.com/users/favorites', dataToSend)
       .then(response => {
         // Handle response if needed
@@ -75,9 +72,7 @@ export default function RecipeReviewCard(props) {
   const handleRemoveFromFavorites = () => {
     setIsLiked(true);
     setOpenDialog(false);
-   
   };
-
   const getrecipe = {
     recipe_id: props.recipeData.id,
   };
@@ -89,17 +84,13 @@ export default function RecipeReviewCard(props) {
         .then(response => {
           // Handle response
           const  json = response.data;
-          
-          // Navigate to the next page
-          
+
           // Navigate to the next page and pass the received data
           navigate('/components/Page3Components/HomeP3', { state: { value: json, Json: infor.json , ingredientList: infor.ingredients } });
         })
         .catch(error => {
           // Handle error if needed
-          
           console.error('Error sending user ID to server:', error);
-          
         });
     }
   };

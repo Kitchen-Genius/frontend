@@ -2,8 +2,10 @@ import storageSession from 'redux-persist/lib/storage/session';
 import { configureStore } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
+// this component sets up a Redux store with persisted state management,
+// defines reducers to manage user-related data, and exports actions for updating the store state.
 
-export const userSlice = createSlice({
+export const userSlice = createSlice({ // we store here the global variable user that also have infor as information saver
   name: 'user',
   initialState: {
     user: { 

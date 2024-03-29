@@ -4,15 +4,20 @@ import AlertDialog from './AlertDialog';
 import AlertDialog2 from './AlertDialog2';
 import '../../style/cssP2.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../Store';
 
+// This HeaderP2 component is responsible for displaying user information and selected ingredients,
+// intolerances, and cooking time. It fetches this data from props and renders it accordingly.
+// The component includes user profile information such as the user's name and profile picture,
+// as well as a visual representation of selected intolerances, ingredients, and cooking time.
+// If there are more than two intolerances or ingredients selected,
+// it provides a button to view all of them. Additionally,
+// it features an image of a kitchen genius icon.
 export default function HeaderP2(props) {
   const [Intolerances, setIntolerances] = useState([]);
   const [Ingredients, setIngredients] = useState([]);
   const [ShowTime, setTime] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  
 
   useEffect(() => {
     const receiveIntoFunc = () => {
@@ -22,19 +27,17 @@ export default function HeaderP2(props) {
             ['High_protein', 'Low_calories', 'Vegetarian', 'dairyFree', 'Gluten_free', 'veryHealthy'].includes(ingredient) && value
           )
           .map(([key]) => key);
-  
         setIntolerances(intolerances);
-  
         const ingredients = props.ingredientList.ingredients || [];
         setIngredients(ingredients);
       }
     };
-  
+
     const cookingTime = props.ingredientList?.ShowTime;
     if (ShowTime !== undefined) {
       setTime(cookingTime);
     }
-  
+
     receiveIntoFunc();
   }, [props.ingredientList]);
 
@@ -48,7 +51,6 @@ export default function HeaderP2(props) {
         <div className="Steven_square_p1">
           <p className="Hader_text_p1">Hi, Steve</p>
           <div className="Steven_pic_p1" style={{ backgroundImage: `url(${user.imgUrl}?raw=true)` }} >
-         
           </div>
         </div>
       </div>
@@ -89,16 +91,14 @@ export default function HeaderP2(props) {
           {ShowTime !== null && (
             <p style={{ ...buttonLevelStyle, margin: '2px 5px' }}>{ShowTime}</p>
           )}
-          
         </div>
+        <div className='line_header'></div>
       </div>
-      
     </>
   );
 }
 
 const buttonStyle = {
-  
   height: '20px',
   padding: '6px 10px',
   borderRadius: '8px',

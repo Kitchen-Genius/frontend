@@ -16,17 +16,19 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 
 const defaultTheme = createTheme();
-
+// this component provides a user interface for signing in with an email address and password,
+// validates the input, and interacts with the server for authentication.
 export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const isValidEmail = (email) => {
+  const isValidEmail = (email) => { // in here we checks if we got valid email format 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => { // handleSubmit is sending the user email and password to the server
+    // in the server we check the information and sees if it existing in the database 
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
@@ -57,7 +59,9 @@ export default function SignIn() {
       if (typeof response.data === "object") {
        
         dispatch(setUser({ email, password, username: response.data.name, imgUrl: response.data.img_link, id: response.data.user_id, liked: false }));
+        // in here we adding all the necessary information to the ridux user variable
         navigate('/components/Home');
+        // the navigate function takes us to the home page
       } else {
         alert('Invalid email or password. Please try again.');
       }

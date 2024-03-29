@@ -7,6 +7,9 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import '../style/cssP1.css';
 
 const ToggleButtons2 = (props) => {
+  //this component provides a user-friendly interface
+  // for selecting dietary preferences,
+  // enhancing the user experience in filtering content based on dietary choices.
   const [selectedButtons, setSelectedButtons] = useState([]);
 
   const buttonIcons = {
@@ -30,7 +33,6 @@ const ToggleButtons2 = (props) => {
   useEffect(() => {
     // Initialize selectedButtons state to an empty array
     setSelectedButtons([]);
-
     // Initialize ingredientList with all buttons set to false
     props.setIngredientList((prevList) => {
       const updatedList = {};

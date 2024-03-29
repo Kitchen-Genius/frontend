@@ -22,8 +22,9 @@ import { useNavigate } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  // this component facilitates user registration by collecting necessary information
+  // interacting with the server for registration purposes.
     const navigate = useNavigate();
-
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -60,7 +61,7 @@ export default function SignUp() {
           return;
         }
   
-        if (typeof response.data === "object") {
+        if (typeof response.data === "object") { // if we secssed to create a new user account we move back to signin page
          
           navigate('/components/SignIn');
         } else {

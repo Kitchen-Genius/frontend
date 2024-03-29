@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../Store';
 
 export default function FooterP1(props) {
+  // this is the navigation fotter it allows to change pages when clicking on the icons
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -25,11 +26,6 @@ export default function FooterP1(props) {
       <Link to="/components/favorites">
         <div className="icon">
           <Favorite fontSize="small" color="error" />
-        </div>
-      </Link>
-      <Link to="/settings">
-        <div className="icon">
-          <Settings fontSize="small" color="disabled" />
         </div>
       </Link>
     </div>

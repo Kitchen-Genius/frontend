@@ -4,20 +4,16 @@
 }
 
 .kitchenIMG {
-
     display: flex;
     width: 100%;
     margin-left: 10px;
     margin-top: 7px;
-
-    
 }
 
 .lay_out {
     width: 393px;
     height: 852px;
     margin: auto;
-
 }
 
 .Rectangle_gray_p2 {
@@ -32,8 +28,6 @@
     margin-left: 9px;
     width: 35px;
     height: 35px;
-   
-
 }
 
 .Steven_square_p1 {
@@ -44,14 +38,11 @@
     justify-content: space-evenly;
     align-items: center;
     justify-content: center;
-
 }
 
-.Hader_text_p1{
+.Hader_text_p1 {
     font-size: 13px;
     margin-right: 5px;
-
-
 }
 
 .Steven_pic_p1 {
@@ -60,13 +51,11 @@
     height: 50px;
     background-image: url('../my_Images/steven_pic.png');
     border-radius: 30px;
-
 }
 
 .TextP2 {
-
-        font-size: 22px;
-        display: flex;
+    font-size: 22px;
+    display: flex;
     margin-left: 10px;
 }
 
@@ -81,41 +70,31 @@
     flex-wrap: nowrap;
     align-items: flex-start;
     justify-content: space-around;
-
 }
-
-
-
-
 
 .Intolerances_p2 p {
     font-size: 15px;
     margin-left: 10px;
-
 }
 
 .Intolerances_p2 {
-   display: flex;
-   margin-top: 8px;
-
+    display: flex;
+    margin-top: 8px;
 }
 
 .Ingredients_p2 p { 
-    
     font-size: 15px;
     margin-left: 10px;
-
 }
-.Ingredients_p2 {
-  display: flex;
 
+.Ingredients_p2 {
+    display: flex;
 }
 
 .Level_p2 {
     display: flex;
-
-    
 }
+
 .recPList {
     overflow: auto;
     height: 475px;
@@ -123,8 +102,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
-
 }
 
 .leftContainer {
@@ -132,24 +109,18 @@
     flex-wrap: wrap;
     height: 146px;
     width: 250px;
-
 }
 
 .rightContainer {
     overflow: hidden;
     height: 146px;
     width: 143px;
-
-    
-
-
 }
 
 .subTitle {
-  font-size: 14px;
-  height: 30px;
-  width: 100%;;
-
+    font-size: 14px;
+    height: 30px;
+    width: 100%;
 }
 
 .recPic {
@@ -157,11 +128,9 @@
     background-size: cover;
     height: 122px;
     width: 100px;
-
 }
 
 .recPic img { 
-
     height: 143px;
     width: 143px;
 }
@@ -170,7 +139,6 @@
     margin-top: 30px;
     height: 25px;
     width: 55px;
-
 }
 
 .FooterP2 {
@@ -178,11 +146,9 @@
     justify-content: space-around;
     align-items: center;
     height: 40px; 
-    
     background-color: rgba(0, 59, 84, 0.1);
     margin-top: 25px;
 }
-
 
 .text_container {
     display: flex;
@@ -201,26 +167,28 @@
     cursor: pointer;
     outline: none; 
     margin-top: 15px;
+}
 
-  }
-
-  .line {
+.line {
     height: 2px;
     width: 393px;
     background-color: rgb(92, 91, 91);
-    margin: 10px auto; /* Adjust margin as needed */
-  }
+    margin: 10px auto; 
+}
 
-  .buttons_container{
+.line_header {
+    height: 2px;
+    width: 393px;
+    background-color: rgb(92, 91, 91);
+}
+
+.buttons_container {
     width: 100px;
     margin-left: 75px;
     height: 100px;
 }
 
-.like_button{
-
+.like_button {
     position: relative;
     top: 3px;
-
 }
-

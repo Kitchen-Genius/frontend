@@ -3,8 +3,11 @@ import my_Images from '../../my_Images/kitchengenius.png';
 import '../../style/cssP1.css';
 import { setUser } from '../Store';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+// It includes a logout button, user information display, and an image.
+// Upon clicking the logout button, the user's information is cleared from the Redux store using the setUser action.
+// The user's name and profile picture are displayed based on the data fetched from the server that save on user in redux store.
 
 export default function HeaderP1() {
   const dispatch = useDispatch();
@@ -12,13 +15,12 @@ export default function HeaderP1() {
   const [userData, setUserData] = useState(null);
   
 
-  useEffect(() => {
+  useEffect(() => { // this useEffect is set the user information to useState hook
     setUserData(user);
   }, [user]);
 
- 
-
-  const handleLogout = () => {
+  const handleLogout = () => {     // the handleLogout fuction is set the user to be empty and by that 
+    // with other restrictions (i did in app.js component) it will log out 
     dispatch(setUser({}));
   };
 

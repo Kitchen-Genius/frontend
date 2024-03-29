@@ -3,9 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../Store';
 import { Favorite } from '@mui/icons-material';
-import { Snackbar } from '@mui/material'; // Import Snackbar
+import { Snackbar } from '@mui/material'; 
 import axios from 'axios';
 import '../../style/cssP2.css';
+
+// MainP2 component renders recipe cards based on fetched data and handles user interactions such as
+// liking a recipe.
+// It displays recipe information including title, cooking time, calories, servings, and an image.
+// Users can like a recipe, and a Snackbar notifies them that the recipe is been liked.
 
 export default function MainP2(props) {
   const dispatch = useDispatch();
@@ -17,11 +22,11 @@ export default function MainP2(props) {
   const navigate = useNavigate();
   const Json = props.myJson;
  
-  useEffect(() => {
+  useEffect(() => { // this use effect is saving the recived recipes in use state hook
     setRecipeJson(Json || []);
   }, [Json]);
 
-  useEffect(() => {
+  useEffect(() => { // this use effect renders all the recipes that we recived from the server 
     const putRecipeCard = () => {
       setSelector((prevSelector) =>
         recipeJson.map((value, index) => (
@@ -36,7 +41,7 @@ export default function MainP2(props) {
                   <button className='start_button' onClick={() => recipeSelected(value)}>
                     Start
                   </button>
-                  <button className='like_button' onClick={() => handleLikeClick(value.id)}> {/* Modified onClick */}
+                  <button className='like_button' onClick={() => handleLikeClick(value.id)}> 
                     <Favorite
                       fontSize="small"
                       color={likedRecipes.includes(value.id) ? 'error' : 'inherit'}
@@ -108,7 +113,7 @@ export default function MainP2(props) {
       {recipeJson.length > 0 && selector}
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={4000} // Hide after 6 seconds
+        autoHideDuration={3000} // Hide after 3 seconds
         onClose={() => setOpenSnackbar(false)} // Close Snackbar on user action
         message="The recipe has been liked" // Snackbar message
       />

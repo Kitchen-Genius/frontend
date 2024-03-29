@@ -7,8 +7,14 @@ import '../../style/cssP1.css';
 
 const ToggleButtons = (props) => {
   const buttonNames = ['breakfast', 'lunch', 'dinner', 'dessert'];
-
   const [selectedButton, setSelectedButton] = useState(null);
+
+  // This component displays a set of toggle buttons
+  // representing meal types (breakfast, lunch, dinner, dessert).
+  // Users can click on these buttons to select or deselect a meal type.
+  // Each button is accompanied by an icon representing its respective meal type.
+  // When a button is clicked, it changes color to indicate selection,
+  // and the corresponding value in the ingredient list state is updated accordingly.
 
   useEffect(() => {
     // Initialize ingredientList with all buttons set to false

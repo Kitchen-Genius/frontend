@@ -84,12 +84,12 @@ export default function MainP1() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (ingredient.length === 0) {
-      alert("Error: It's an empty input");
+      alert("Error: empty input is not allowed");
       return;
     }
 
     if (!ingredientOptions.includes(ingredient)) {
-      alert('Error: Ingredient not found in CSV');
+      alert('Error: Ingredient not from the list');
       return;
     }
 
@@ -112,7 +112,7 @@ export default function MainP1() {
   const submitSearch = async () => {
     console.log(ingredientList)
     if (!ingredientList.hasOwnProperty('ingredients')) {
-      alert('Please insert ingredients and choose from the menu');
+      alert('Please insert ingredients');
       return;
     }
     if (!ingredientList.hasOwnProperty('breakfast', 'lunch', 'dinner', 'dessert')) {

@@ -46,6 +46,10 @@ export default function SignUp() {
         alert('Must insert password');
         return;
       }
+      if (username === "") {
+        alert('Must insert username');
+        return;
+      }
 
       let apiBaseUrl;
 
@@ -70,7 +74,8 @@ export default function SignUp() {
       } catch (error) {
         
         console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        alert('this user is alredy exsist');
+        
       }
   
   };

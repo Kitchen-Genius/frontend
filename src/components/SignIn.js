@@ -67,7 +67,7 @@ export default function SignIn() {
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred. Please try again.');
+      alert('Invalid email or password. Please try again.');
     }
   };
 
